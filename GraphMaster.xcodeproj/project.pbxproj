@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52EE9CA216F13FEC00284359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EE9CA116F13FEC00284359 /* UIKit.framework */; };
+		52EE9CA416F13FEC00284359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EE9CA316F13FEC00284359 /* Foundation.framework */; };
+		52EE9CA616F13FEC00284359 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EE9CA516F13FEC00284359 /* CoreGraphics.framework */; };
+		52EE9CAC16F13FEC00284359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52EE9CAA16F13FEC00284359 /* InfoPlist.strings */; };
+		52EE9CAE16F13FEC00284359 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE9CAD16F13FEC00284359 /* main.m */; };
+		52EE9CB216F13FEC00284359 /* GMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE9CB116F13FEC00284359 /* GMAppDelegate.m */; };
+		52EE9CB416F13FEC00284359 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 52EE9CB316F13FEC00284359 /* Default.png */; };
+		52EE9CB616F13FEC00284359 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52EE9CB516F13FEC00284359 /* Default@2x.png */; };
+		52EE9CB816F13FEC00284359 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52EE9CB716F13FEC00284359 /* Default-568h@2x.png */; };
+		52EE9CBB16F13FED00284359 /* GMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE9CBA16F13FED00284359 /* GMViewController.m */; };
+		52EE9CBE16F13FED00284359 /* GMViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52EE9CBC16F13FED00284359 /* GMViewController_iPhone.xib */; };
+		52EE9CC116F13FED00284359 /* GMViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52EE9CBF16F13FED00284359 /* GMViewController_iPad.xib */; };
+		52EE9CC916F13FED00284359 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EE9CC816F13FED00284359 /* SenTestingKit.framework */; };
+		52EE9CCA16F13FED00284359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EE9CA116F13FEC00284359 /* UIKit.framework */; };
+		52EE9CCB16F13FED00284359 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EE9CA316F13FEC00284359 /* Foundation.framework */; };
+		52EE9CD316F13FED00284359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52EE9CD116F13FED00284359 /* InfoPlist.strings */; };
+		52EE9CD616F13FED00284359 /* GraphMasterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EE9CD516F13FED00284359 /* GraphMasterTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52EE9CCC16F13FED00284359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52EE9C9416F13FEC00284359 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52EE9C9C16F13FEC00284359;
+			remoteInfo = GraphMaster;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52EE9C9D16F13FEC00284359 /* GraphMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52EE9CA116F13FEC00284359 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		52EE9CA316F13FEC00284359 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		52EE9CA516F13FEC00284359 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		52EE9CA916F13FEC00284359 /* GraphMaster-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GraphMaster-Info.plist"; sourceTree = "<group>"; };
+		52EE9CAB16F13FEC00284359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		52EE9CAD16F13FEC00284359 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		52EE9CAF16F13FEC00284359 /* GraphMaster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraphMaster-Prefix.pch"; sourceTree = "<group>"; };
+		52EE9CB016F13FEC00284359 /* GMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMAppDelegate.h; sourceTree = "<group>"; };
+		52EE9CB116F13FEC00284359 /* GMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GMAppDelegate.m; sourceTree = "<group>"; };
+		52EE9CB316F13FEC00284359 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		52EE9CB516F13FEC00284359 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		52EE9CB716F13FEC00284359 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		52EE9CB916F13FED00284359 /* GMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GMViewController.h; sourceTree = "<group>"; };
+		52EE9CBA16F13FED00284359 /* GMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GMViewController.m; sourceTree = "<group>"; };
+		52EE9CBD16F13FED00284359 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GMViewController_iPhone.xib; sourceTree = "<group>"; };
+		52EE9CC016F13FED00284359 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GMViewController_iPad.xib; sourceTree = "<group>"; };
+		52EE9CC716F13FED00284359 /* GraphMasterTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphMasterTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52EE9CC816F13FED00284359 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		52EE9CD016F13FED00284359 /* GraphMasterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GraphMasterTests-Info.plist"; sourceTree = "<group>"; };
+		52EE9CD216F13FED00284359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		52EE9CD416F13FED00284359 /* GraphMasterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphMasterTests.h; sourceTree = "<group>"; };
+		52EE9CD516F13FED00284359 /* GraphMasterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphMasterTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52EE9C9A16F13FEC00284359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EE9CA216F13FEC00284359 /* UIKit.framework in Frameworks */,
+				52EE9CA416F13FEC00284359 /* Foundation.framework in Frameworks */,
+				52EE9CA616F13FEC00284359 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52EE9CC316F13FED00284359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EE9CC916F13FED00284359 /* SenTestingKit.framework in Frameworks */,
+				52EE9CCA16F13FED00284359 /* UIKit.framework in Frameworks */,
+				52EE9CCB16F13FED00284359 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52EE9C9216F13FEC00284359 = {
+			isa = PBXGroup;
+			children = (
+				52EE9CA716F13FEC00284359 /* GraphMaster */,
+				52EE9CCE16F13FED00284359 /* GraphMasterTests */,
+				52EE9CA016F13FEC00284359 /* Frameworks */,
+				52EE9C9E16F13FEC00284359 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52EE9C9E16F13FEC00284359 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52EE9C9D16F13FEC00284359 /* GraphMaster.app */,
+				52EE9CC716F13FED00284359 /* GraphMasterTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52EE9CA016F13FEC00284359 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52EE9CA116F13FEC00284359 /* UIKit.framework */,
+				52EE9CA316F13FEC00284359 /* Foundation.framework */,
+				52EE9CA516F13FEC00284359 /* CoreGraphics.framework */,
+				52EE9CC816F13FED00284359 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52EE9CA716F13FEC00284359 /* GraphMaster */ = {
+			isa = PBXGroup;
+			children = (
+				52EE9CB016F13FEC00284359 /* GMAppDelegate.h */,
+				52EE9CB116F13FEC00284359 /* GMAppDelegate.m */,
+				52EE9CB916F13FED00284359 /* GMViewController.h */,
+				52EE9CBA16F13FED00284359 /* GMViewController.m */,
+				52EE9CBC16F13FED00284359 /* GMViewController_iPhone.xib */,
+				52EE9CBF16F13FED00284359 /* GMViewController_iPad.xib */,
+				52EE9CA816F13FEC00284359 /* Supporting Files */,
+			);
+			path = GraphMaster;
+			sourceTree = "<group>";
+		};
+		52EE9CA816F13FEC00284359 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52EE9CA916F13FEC00284359 /* GraphMaster-Info.plist */,
+				52EE9CAA16F13FEC00284359 /* InfoPlist.strings */,
+				52EE9CAD16F13FEC00284359 /* main.m */,
+				52EE9CAF16F13FEC00284359 /* GraphMaster-Prefix.pch */,
+				52EE9CB316F13FEC00284359 /* Default.png */,
+				52EE9CB516F13FEC00284359 /* Default@2x.png */,
+				52EE9CB716F13FEC00284359 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52EE9CCE16F13FED00284359 /* GraphMasterTests */ = {
+			isa = PBXGroup;
+			children = (
+				52EE9CD416F13FED00284359 /* GraphMasterTests.h */,
+				52EE9CD516F13FED00284359 /* GraphMasterTests.m */,
+				52EE9CCF16F13FED00284359 /* Supporting Files */,
+			);
+			path = GraphMasterTests;
+			sourceTree = "<group>";
+		};
+		52EE9CCF16F13FED00284359 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52EE9CD016F13FED00284359 /* GraphMasterTests-Info.plist */,
+				52EE9CD116F13FED00284359 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52EE9C9C16F13FEC00284359 /* GraphMaster */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52EE9CD916F13FED00284359 /* Build configuration list for PBXNativeTarget "GraphMaster" */;
+			buildPhases = (
+				52EE9C9916F13FEC00284359 /* Sources */,
+				52EE9C9A16F13FEC00284359 /* Frameworks */,
+				52EE9C9B16F13FEC00284359 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GraphMaster;
+			productName = GraphMaster;
+			productReference = 52EE9C9D16F13FEC00284359 /* GraphMaster.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52EE9CC616F13FED00284359 /* GraphMasterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52EE9CDC16F13FED00284359 /* Build configuration list for PBXNativeTarget "GraphMasterTests" */;
+			buildPhases = (
+				52EE9CC216F13FED00284359 /* Sources */,
+				52EE9CC316F13FED00284359 /* Frameworks */,
+				52EE9CC416F13FED00284359 /* Resources */,
+				52EE9CC516F13FED00284359 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52EE9CCD16F13FED00284359 /* PBXTargetDependency */,
+			);
+			name = GraphMasterTests;
+			productName = GraphMasterTests;
+			productReference = 52EE9CC716F13FED00284359 /* GraphMasterTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52EE9C9416F13FEC00284359 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GM;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "John Newman";
+			};
+			buildConfigurationList = 52EE9C9716F13FEC00284359 /* Build configuration list for PBXProject "GraphMaster" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 52EE9C9216F13FEC00284359;
+			productRefGroup = 52EE9C9E16F13FEC00284359 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52EE9C9C16F13FEC00284359 /* GraphMaster */,
+				52EE9CC616F13FED00284359 /* GraphMasterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52EE9C9B16F13FEC00284359 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EE9CAC16F13FEC00284359 /* InfoPlist.strings in Resources */,
+				52EE9CB416F13FEC00284359 /* Default.png in Resources */,
+				52EE9CB616F13FEC00284359 /* Default@2x.png in Resources */,
+				52EE9CB816F13FEC00284359 /* Default-568h@2x.png in Resources */,
+				52EE9CBE16F13FED00284359 /* GMViewController_iPhone.xib in Resources */,
+				52EE9CC116F13FED00284359 /* GMViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52EE9CC416F13FED00284359 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EE9CD316F13FED00284359 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52EE9CC516F13FED00284359 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52EE9C9916F13FEC00284359 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EE9CAE16F13FEC00284359 /* main.m in Sources */,
+				52EE9CB216F13FEC00284359 /* GMAppDelegate.m in Sources */,
+				52EE9CBB16F13FED00284359 /* GMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52EE9CC216F13FED00284359 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EE9CD616F13FED00284359 /* GraphMasterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52EE9CCD16F13FED00284359 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52EE9C9C16F13FEC00284359 /* GraphMaster */;
+			targetProxy = 52EE9CCC16F13FED00284359 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		52EE9CAA16F13FEC00284359 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52EE9CAB16F13FEC00284359 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		52EE9CBC16F13FED00284359 /* GMViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52EE9CBD16F13FED00284359 /* en */,
+			);
+			name = GMViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		52EE9CBF16F13FED00284359 /* GMViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52EE9CC016F13FED00284359 /* en */,
+			);
+			name = GMViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		52EE9CD116F13FED00284359 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52EE9CD216F13FED00284359 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52EE9CD716F13FED00284359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52EE9CD816F13FED00284359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52EE9CDA16F13FED00284359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
+				INFOPLIST_FILE = "GraphMaster/GraphMaster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		52EE9CDB16F13FED00284359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
+				INFOPLIST_FILE = "GraphMaster/GraphMaster-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		52EE9CDD16F13FED00284359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GraphMaster.app/GraphMaster";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
+				INFOPLIST_FILE = "GraphMasterTests/GraphMasterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		52EE9CDE16F13FED00284359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GraphMaster.app/GraphMaster";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
+				INFOPLIST_FILE = "GraphMasterTests/GraphMasterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52EE9C9716F13FEC00284359 /* Build configuration list for PBXProject "GraphMaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52EE9CD716F13FED00284359 /* Debug */,
+				52EE9CD816F13FED00284359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52EE9CD916F13FED00284359 /* Build configuration list for PBXNativeTarget "GraphMaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52EE9CDA16F13FED00284359 /* Debug */,
+				52EE9CDB16F13FED00284359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		52EE9CDC16F13FED00284359 /* Build configuration list for PBXNativeTarget "GraphMasterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52EE9CDD16F13FED00284359 /* Debug */,
+				52EE9CDE16F13FED00284359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52EE9C9416F13FEC00284359 /* Project object */;
+}
