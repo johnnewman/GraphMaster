@@ -263,8 +263,8 @@
 		52EE9CA716F13FEC00284359 /* GraphMaster */ = {
 			isa = PBXGroup;
 			children = (
-				52B3B92A171F7AF200B09420 /* Weight View Controller */,
 				52B3B8E9171F78A200B09420 /* WEPopover */,
+				52B3B92A171F7AF200B09420 /* Weight View Controller */,
 				52EE9CE916F1418F00284359 /* Models */,
 				52EE9CDF16F1412D00284359 /* Delegate */,
 				52EE9CE016F1413300284359 /* Graph View Controller */,
@@ -319,11 +319,11 @@
 		52EE9CE016F1413300284359 /* Graph View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				52EE9CF416F1437400284359 /* Canvass */,
 				52EE9CE116F1414F00284359 /* GMGraphViewController.h */,
 				52EE9CE216F1414F00284359 /* GMGraphViewController.m */,
 				52EE9CBC16F13FED00284359 /* GMGraphViewController_iPhone.xib */,
 				52EE9CBF16F13FED00284359 /* GMGraphViewController_iPad.xib */,
+				52EE9CF416F1437400284359 /* Canvass */,
 			);
 			name = "Graph View Controller";
 			sourceTree = "<group>";
@@ -333,10 +333,10 @@
 			children = (
 				52EE9CEF16F141D600284359 /* GMEdge.h */,
 				52EE9CF016F141D600284359 /* GMEdge.m */,
+				52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */,
 				52CD7BBF170BB52200247F75 /* GMNodeView.h */,
 				52CD7BC0170BB52200247F75 /* GMNodeView.m */,
 				52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */,
-				52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";

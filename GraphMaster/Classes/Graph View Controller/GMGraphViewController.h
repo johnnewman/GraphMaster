@@ -15,7 +15,7 @@
 @class WEPopoverController;
 
 typedef enum {
-    NODE_TYPE,
+    NODE_TYPE = 0,
     EDGE_TYPE
 }DrawType;
 

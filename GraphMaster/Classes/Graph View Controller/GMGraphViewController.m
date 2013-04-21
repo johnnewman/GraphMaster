@@ -17,12 +17,12 @@
 
 @interface GMGraphViewController ()
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer*)tapGestureRecognizer;
-- (IBAction)nodeButtonSelected;
-- (IBAction)edgeButtonSelected;
+- (IBAction)drawStyleChanged;
 
 - (void)addNewNodeToTapLocation:(CGPoint)tapLocation;
 
 @property (nonatomic, weak) IBOutlet GMGraphCanvass *graphCanvass;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *drawTypeSegControl;
 @end
 
 @implementation GMGraphViewController
@@ -42,6 +42,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer {    
     if (currentDrawType == NODE_TYPE)
         [self addNewNodeToTapLocation:[tapGestureRecognizer locationInView:_graphCanvass]];
@@ -55,12 +58,7 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:node action:@selector(tapOccurred:)];
     [node addGestureRecognizer:tapGesture];
     [_graphCanvass addSubview:node];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    NSLog(@"touches began controller");
-    [super touchesBegan:touches withEvent:event];
+    [_graphCanvass bringSubviewToFront:_drawTypeSegControl];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -68,8 +66,8 @@
         CGPoint endPoint = [[touches anyObject] locationInView:_graphCanvass];
         GMNodeView *destinationNode = [self nodeInPoint:endPoint];
         if (destinationNode && destinationNode != _graphCanvass.nodeWithTouches) {
-            NSLog(@"edge destination: %d", destinationNode.number);
-            GMEdge *newEdge = [[GMEdge alloc] initWithWeight:5 startNode:_graphCanvass.nodeWithTouches destNode:destinationNode];
+            int randWeight = arc4random() % 100;
+            GMEdge *newEdge = [[GMEdge alloc] initWithWeight:randWeight startNode:_graphCanvass.nodeWithTouches destNode:destinationNode];
             newEdge.delegate = self;
             [_graphCanvass addSubview:newEdge.weightButton];
             [_graphCanvass.nodeWithTouches addOutgoingEdge:newEdge];
@@ -78,6 +76,7 @@
         }
     }
     _graphCanvass.isDrawingNewEdge = NO;
+    [_graphCanvass setNeedsDisplay];
     [super touchesEnded:touches withEvent:event];
 }
 
@@ -88,12 +87,9 @@
     return nil;
 }
 
-- (IBAction)nodeButtonSelected {
-    currentDrawType = NODE_TYPE;
-}
-
-- (IBAction)edgeButtonSelected {
-    currentDrawType = EDGE_TYPE;
+- (IBAction)drawStyleChanged {
+    NSUInteger selectedDrawType = _drawTypeSegControl.selectedSegmentIndex;
+    currentDrawType = selectedDrawType;
 }
 
 #pragma mark -
@@ -158,8 +154,20 @@
 	return props;
 }
 
+
+#pragma mark -
+#pragma mark GMWeightPickerViewControllerDelegate Methods
+
 - (void)weightPickerViewController:(GMWeightPickerViewController *)weightPickerViewController didSelectWeight:(NSInteger)weight {
     selectedEdge.weight = weight;
+}
+
+- (void)weightPickerViewControllerDeleteButtonSelected:(GMWeightPickerViewController *)weightPickerViewController {
+    [popoverController dismissPopoverAnimated:YES];
+    [selectedEdge.startNode removeOutgoingEdge:selectedEdge];
+    [selectedEdge.destNode removeIncomingEdge:selectedEdge];
+    [selectedEdge.weightButton removeFromSuperview];
+    [_graphCanvass setNeedsDisplay];
 }
 
 @end

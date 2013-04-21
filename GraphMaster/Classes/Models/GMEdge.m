@@ -10,9 +10,6 @@
 #import "GMNodeView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define kMIN_LABEL_WIDTH 20
-#define kLABEL_HEIGHT 20
-
 @interface GMEdge ()
 - (void)weightButtonSelected;
 @end
@@ -25,15 +22,15 @@
         _destNode = destNode;
         
         _weightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _weightButton.frame = CGRectMake(0, 0, kMIN_LABEL_WIDTH, kLABEL_HEIGHT);
+        _weightButton.titleLabel.font = [UIFont systemFontOfSize:kEDGE_TEXT_SIZE];
         [_weightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_weightButton addTarget:self action:@selector(weightButtonSelected) forControlEvents:UIControlEventTouchUpInside];
         _weightButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         _weightButton.backgroundColor = [UIColor lightGrayColor];
         _weightButton.layer.cornerRadius = 5.0;
         _weightButton.layer.borderWidth = 2.0;
+        [_weightButton addTarget:self action:@selector(weightButtonSelected) forControlEvents:UIControlEventTouchUpInside];
         
-        self.weight = _weight;
+        self.weight = weight;
     }
     return self;
 }
@@ -53,18 +50,10 @@
 
 - (void)setWeight:(NSInteger)weight {
     _weight = weight;
-    
-    NSString *weightText = [NSString stringWithFormat:@"%d", _weight];
-    CGSize neededSize = [weightText sizeWithFont:_weightButton.titleLabel.font];
-    
-    CGRect weightButtonFrame = _weightButton.frame;
-    if (neededSize.width > kMIN_LABEL_WIDTH)
-        weightButtonFrame.size.width = neededSize.width + 4;
-    else
-        weightButtonFrame.size.width = kMIN_LABEL_WIDTH;
-    _weightButton.frame = weightButtonFrame;
-    
+    NSString *weightText = [NSString stringWithFormat:@" %d ", _weight];
     [_weightButton setTitle:weightText forState:UIControlStateNormal];
+    [_weightButton sizeToFit];
+    [self centerWeightLabel];
 }
 
 @end

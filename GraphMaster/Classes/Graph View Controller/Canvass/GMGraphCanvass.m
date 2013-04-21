@@ -13,26 +13,12 @@
 
 @implementation GMGraphCanvass
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    NSLog(@"touches began canvass");
-    [super touchesBegan:touches withEvent:event];
-}
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (currentDrawType == EDGE_TYPE) {
+    if (currentDrawType == EDGE_TYPE && _nodeWithTouches != nil) {
         UITouch *touch = [touches anyObject];
         movePoint = [touch locationInView:self];
         if (CGRectContainsPoint(self.bounds, movePoint)) {
-            NSLog(@"point inside canvass");
             _isDrawingNewEdge = YES;
             [self setNeedsDisplay];
         }
@@ -70,12 +56,6 @@
       //draw each node and it's outgoing edges
     for (GMNodeView *node in _nodes) {
         for (GMEdge *edge in node.outgoingEdges) {
-            
-//            if (edge.isSelected) {
-//                CGContextStrokePath(context);
-//                CGFloat lineLengths[] = {3.0};
-//                CGContextSetLineDash(context, 0, lineLengths, 1);
-//            }
             
             [edge centerWeightLabel];
             
@@ -178,14 +158,6 @@
             
             CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
             CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
-            
-//            if (edge.isSelected) {
-//                CGContextStrokePath(context);
-//                CGContextSetLineDash(context, 0, NULL, 0);
-//            }
-            
-            
-            
         }
         
         

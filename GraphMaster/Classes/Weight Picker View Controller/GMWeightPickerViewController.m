@@ -11,6 +11,8 @@
 
 #define kPICKER_WIDTH 75
 #define kPICKER_HEIGHT 162
+#define kVIEW_PADDING 5
+#define kDELETE_BUTTON_HEIGHT 40
 #define kMAX_VALUE 100
 
 @interface GMWeightPickerViewController ()
@@ -22,7 +24,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.contentSizeForViewInPopover = CGSizeMake(kPICKER_WIDTH, kPICKER_HEIGHT);
+        self.contentSizeForViewInPopover = CGSizeMake(kPICKER_WIDTH, kPICKER_HEIGHT + kVIEW_PADDING + kDELETE_BUTTON_HEIGHT);
     }
     return self;
 }
@@ -34,6 +36,7 @@
 	// Do any additional setup after loading the view.
     
     [self addWeightPicker];
+    [self addDeleteButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +58,22 @@
     weightPicker.delegate = self;
     weightPicker.dataSource = self;
     [self.view addSubview:weightPicker];
+}
+
+- (void)addDeleteButton {
+    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(0, kPICKER_HEIGHT + kVIEW_PADDING, kPICKER_WIDTH, kDELETE_BUTTON_HEIGHT)];
+    deleteButton.layer.borderWidth = 2.0f;
+    deleteButton.layer.cornerRadius = 5.0f;
+    deleteButton.backgroundColor = [UIColor redColor];
+    [deleteButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(deleteButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:deleteButton];
+}
+
+- (void)deleteButtonSelected {
+    if ([_delegate respondsToSelector:@selector(weightPickerViewControllerDeleteButtonSelected:)])
+        [_delegate weightPickerViewControllerDeleteButtonSelected:self];
 }
 
 

@@ -25,7 +25,9 @@
 - (id)initWithNumber:(NSUInteger)nodeNumber;
 - (void)tapOccurred:(UITapGestureRecognizer*)tapGesture;
 - (void)addIncomingEdge:(GMEdge*)edge;
+- (void)removeIncomingEdge:(GMEdge*)edge;
 - (void)addOutgoingEdge:(GMEdge*)edge;
+- (void)removeOutgoingEdge:(GMEdge*)edge;
 
 
 @end

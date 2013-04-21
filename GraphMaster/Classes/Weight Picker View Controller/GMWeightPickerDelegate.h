@@ -11,4 +11,5 @@
 
 @protocol GMWeightPickerDelegate <NSObject>
 - (void)weightPickerViewController:(GMWeightPickerViewController*)weightPickerViewController didSelectWeight:(NSInteger)weight;
+- (void)weightPickerViewControllerDeleteButtonSelected:(GMWeightPickerViewController*)weightPickerViewController;
 @end

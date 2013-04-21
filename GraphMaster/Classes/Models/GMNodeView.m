@@ -30,7 +30,6 @@
         [self addSubview:_numberLabel];
         
         self.backgroundColor = [UIColor clearColor];
-        self.alpha = 0.5;
         
         _incomingEdges = [NSMutableArray array];
         _outgoingEdges = [NSMutableArray array];
@@ -77,12 +76,18 @@
 
 - (void)addIncomingEdge:(GMEdge *)edge {
     [_incomingEdges addObject:edge];
-    [self setNeedsDisplay];
+}
+
+- (void)removeIncomingEdge:(GMEdge *)edge {
+    [_incomingEdges removeObject:edge];
 }
 
 - (void)addOutgoingEdge:(GMEdge *)edge {
     [_outgoingEdges addObject:edge];
-    [self setNeedsDisplay];
+}
+
+- (void)removeOutgoingEdge:(GMEdge *)edge {
+    [_outgoingEdges removeObject:edge];
 }
 
 - (void)drawRect:(CGRect)rect
