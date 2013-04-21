@@ -14,7 +14,6 @@
 @interface GMEdge : NSObject
 
 @property (nonatomic) NSInteger weight;
-@property (nonatomic, setter = setSelected:) BOOL isSelected;
 @property (nonatomic, weak) GMNodeView *startNode;
 @property (nonatomic, weak) GMNodeView *destNode;
 @property (nonatomic, strong, readonly) UIButton *weightButton;

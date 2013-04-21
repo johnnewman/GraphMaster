@@ -71,11 +71,11 @@
     for (GMNodeView *node in _nodes) {
         for (GMEdge *edge in node.outgoingEdges) {
             
-            if (edge.isSelected) {
-                CGContextStrokePath(context);
-                CGFloat lineLengths[] = {3.0};
-                CGContextSetLineDash(context, 0, lineLengths, 1);
-            }
+//            if (edge.isSelected) {
+//                CGContextStrokePath(context);
+//                CGFloat lineLengths[] = {3.0};
+//                CGContextSetLineDash(context, 0, lineLengths, 1);
+//            }
             
             [edge centerWeightLabel];
             
@@ -179,10 +179,10 @@
             CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
             CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
             
-            if (edge.isSelected) {
-                CGContextStrokePath(context);
-                CGContextSetLineDash(context, 0, NULL, 0);
-            }
+//            if (edge.isSelected) {
+//                CGContextStrokePath(context);
+//                CGContextSetLineDash(context, 0, NULL, 0);
+//            }
             
             
             

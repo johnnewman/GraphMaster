@@ -47,6 +47,7 @@
 		52B3B929171F78D800B09420 /* popoverBgSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3B90B171F78D800B09420 /* popoverBgSimple.png */; };
 		52B3B92D171F7B4900B09420 /* GMWeightPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */; };
 		52B3B92E171F7B4900B09420 /* GMWeightPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */; };
+		52B3B931172494DF00B09420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B3B930172494DF00B09420 /* QuartzCore.framework */; };
 		52CD7BC1170BB52200247F75 /* GMNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CD7BC0170BB52200247F75 /* GMNodeView.m */; };
 		52CD7BC2170BB52200247F75 /* GMNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CD7BC0170BB52200247F75 /* GMNodeView.m */; };
 		52EE9CA216F13FEC00284359 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EE9CA116F13FEC00284359 /* UIKit.framework */; };
@@ -113,6 +114,8 @@
 		52B3B90B171F78D800B09420 /* popoverBgSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverBgSimple.png; sourceTree = "<group>"; };
 		52B3B92B171F7B4900B09420 /* GMWeightPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMWeightPickerViewController.h; path = "Classes/Weight Picker View Controller/GMWeightPickerViewController.h"; sourceTree = "<group>"; };
 		52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMWeightPickerViewController.m; path = "Classes/Weight Picker View Controller/GMWeightPickerViewController.m"; sourceTree = "<group>"; };
+		52B3B92F1724910700B09420 /* GMWeightPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMWeightPickerDelegate.h; path = "Classes/Weight Picker View Controller/GMWeightPickerDelegate.h"; sourceTree = "<group>"; };
+		52B3B930172494DF00B09420 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		52CD7BBF170BB52200247F75 /* GMNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeView.h; path = Classes/Models/GMNodeView.h; sourceTree = "<group>"; };
 		52CD7BC0170BB52200247F75 /* GMNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMNodeView.m; path = Classes/Models/GMNodeView.m; sourceTree = "<group>"; };
 		52EE9C9D16F13FEC00284359 /* GraphMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B3B931172494DF00B09420 /* QuartzCore.framework in Frameworks */,
 				52EE9CA216F13FEC00284359 /* UIKit.framework in Frameworks */,
 				52EE9CA416F13FEC00284359 /* Foundation.framework in Frameworks */,
 				52EE9CA616F13FEC00284359 /* CoreGraphics.framework in Frameworks */,
@@ -220,6 +224,7 @@
 			children = (
 				52B3B92B171F7B4900B09420 /* GMWeightPickerViewController.h */,
 				52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */,
+				52B3B92F1724910700B09420 /* GMWeightPickerDelegate.h */,
 			);
 			name = "Weight View Controller";
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 		52EE9CA016F13FEC00284359 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52B3B930172494DF00B09420 /* QuartzCore.framework */,
 				52EE9CA116F13FEC00284359 /* UIKit.framework */,
 				52EE9CA316F13FEC00284359 /* Foundation.framework */,
 				52EE9CA516F13FEC00284359 /* CoreGraphics.framework */,

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMWeightPickerDelegate.h"
 
 @interface GMWeightPickerViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
     UIPickerView *weightPicker;
 }
 
-//@property (nonatomic, strong, readonly)UIPickerView *weightPicker;
+@property(nonatomic, weak)id<GMWeightPickerDelegate> delegate;
 
 @end
