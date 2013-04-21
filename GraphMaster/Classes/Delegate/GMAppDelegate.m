@@ -8,7 +8,7 @@
 
 #import "GMAppDelegate.h"
 
-#import "GMViewController.h"
+#import "GMGraphViewController.h"
 
 @implementation GMAppDelegate
 
@@ -17,9 +17,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[GMViewController alloc] initWithNibName:@"GMViewController_iPhone" bundle:nil];
+        self.viewController = [[GMGraphViewController alloc] initWithNibName:@"GMGraphViewController_iPhone" bundle:nil];
     } else {
-        self.viewController = [[GMViewController alloc] initWithNibName:@"GMViewController_iPad" bundle:nil];
+        self.viewController = [[GMGraphViewController alloc] initWithNibName:@"GMGraphViewController_iPad" bundle:nil];
     }
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];

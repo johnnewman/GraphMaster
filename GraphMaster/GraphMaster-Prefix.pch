@@ -11,4 +11,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+#define kNODE_RADIUS 30
+#define kEDGE_WIDTH 2
+#define kNODE_EDGE_WIDTH 4
+#define kNODE_TEXT_SIZE 20
+
 #endif

@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class GMViewController;
+@class GMGraphViewController;
 
 @interface GMAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) GMViewController *viewController;
+@property (strong, nonatomic) GMGraphViewController *viewController;
 
 @end
