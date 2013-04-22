@@ -30,18 +30,20 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGRect startNodeFrame;
-    CGRect destNodeFrame;
-    CGPoint destNodeCenter;
-    CGPoint startNodeCenter;
-    CGFloat slope;
-    CGFloat yIntercept;
+    CGRect startNodeFrame, destNodeFrame;
+    CGPoint destNodeCenter, startNodeCenter;
     
-    CGFloat a;
-    CGFloat b;
-    CGFloat c;
+    CGFloat slope, perpendicularSlope;
+    
     CGFloat circleIntersectX;
     CGPoint circleIntersectPoint;
+    
+    CGFloat arrowEdgeStartX;
+    CGPoint arrowEdgeStartPoint;
+    
+    CGFloat arrowStartX1, arrowStartX2;
+    CGPoint arrowStartPoint1, arrowStartPoint2;
+    
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, kEDGE_WIDTH);
@@ -64,55 +66,57 @@
             destNodeFrame = edge.destNode.frame;
             destNodeCenter = CGPointMake(CGRectGetMidX(destNodeFrame), CGRectGetMidY(destNodeFrame));
             
-            if (startNodeCenter.x == destNodeCenter.x || startNodeCenter.y == destNodeCenter.y) {
-                //have vertical line!
-                NSLog(@"vertical/horizontal line");
-            }
-            else {
-                
-                //drawing arrows
-                
-                slope = (destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x);
-                yIntercept = startNodeCenter.y - (startNodeCenter.x * slope);
-                
-                a = 1 + pow(slope, 2);
-                b = (-2 * destNodeCenter.x) + (2 * (slope * (yIntercept - destNodeCenter.y)));
-                c = pow(destNodeCenter.x, 2) + pow((yIntercept - destNodeCenter.y), 2) - pow(kNODE_RADIUS, 2);
-                
-                if (startNodeCenter.x < destNodeCenter.x)
-                    circleIntersectX = (-b - sqrt(pow(b, 2.0) - (4*a*c))) / (2*a);
-                else
-                    circleIntersectX = (-b + sqrt(pow(b, 2.0) - (4*a*c))) / (2*a);
-                
-                circleIntersectPoint = CGPointMake(circleIntersectX, (slope * circleIntersectX) + yIntercept);
-                
-                
-                CGFloat distanceFromNode = 10.0;
-                CGFloat destX;
-                if (startNodeCenter.x < destNodeCenter.x)
-                    destX = circleIntersectPoint.x - (distanceFromNode / (sqrt(1+pow(slope, 2.0))));
-                else
-                    destX = circleIntersectPoint.x + (distanceFromNode / (sqrt(1+pow(slope, 2.0))));
-                
-                CGPoint arrowBackPointOnLine = CGPointMake(destX, (slope * destX) + yIntercept);
-                
-                
-                CGFloat distanceFromArrowBase = 5.0;
-                CGFloat perpSlope = -1/slope;
-                CGFloat perpYIntercept = (perpSlope * -arrowBackPointOnLine.x) + arrowBackPointOnLine.y;
-                
-                CGFloat arrowStartX1 = arrowBackPointOnLine.x - (distanceFromArrowBase / (sqrt(1+pow(perpSlope, 2.0))));
-                CGPoint arrowStartPoint1 = CGPointMake(arrowStartX1, (perpSlope * arrowStartX1) + perpYIntercept);
-                
-                CGFloat arrowStartX2 = arrowBackPointOnLine.x + (distanceFromArrowBase / (sqrt(1+pow(perpSlope, 2.0))));
-                CGPoint arrowStartPoint2 = CGPointMake(arrowStartX2, (perpSlope * arrowStartX2) + perpYIntercept);
-                
-                
-                CGContextMoveToPoint(context, arrowStartPoint1.x, arrowStartPoint1.y);
-                CGContextAddLineToPoint(context, circleIntersectPoint.x, circleIntersectPoint.y);
-                CGContextMoveToPoint(context, arrowStartPoint2.x, arrowStartPoint2.y);
-                CGContextAddLineToPoint(context, circleIntersectPoint.x, circleIntersectPoint.y);
-               
+            CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
+            CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
+            
+                        
+            //ARROW DRAWING
+            
+            slope = (destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x);
+            
+              //have to avoid vertical and horizontal lines for the arrow drawing
+            if (slope == -INFINITY)
+                slope = 200;
+            else if (slope == INFINITY)
+                slope = -200;
+            
+            if (slope == 0)
+                perpendicularSlope = 200;
+            else
+                perpendicularSlope = -1/slope;
+            
+            
+              //calculate the edge/circle intersect point
+            if (startNodeCenter.x < destNodeCenter.x)
+                circleIntersectX = destNodeCenter.x - (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
+            else
+                circleIntersectX = destNodeCenter.x + (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
+            circleIntersectPoint = CGPointMake(circleIntersectX, (slope * (circleIntersectX - destNodeCenter.x)) + destNodeCenter.y);
+            
+            
+            
+            
+              //step back from the node to start arrow
+            if (startNodeCenter.x < destNodeCenter.x)
+                arrowEdgeStartX = circleIntersectPoint.x - (kARROW_DISTANCE_FROM_NODE / (sqrt(1+pow(slope, 2.0))));
+            else
+                arrowEdgeStartX = circleIntersectPoint.x + (kARROW_DISTANCE_FROM_NODE / (sqrt(1+pow(slope, 2.0))));
+            arrowEdgeStartPoint = CGPointMake(arrowEdgeStartX, (slope * (arrowEdgeStartX - circleIntersectPoint.x)) + circleIntersectPoint.y);
+            
+            
+                        
+            arrowStartX1 = arrowEdgeStartPoint.x - (kARROW_DISTANCE_FROM_EDGE / (sqrt(1+pow(perpendicularSlope, 2.0))));
+            arrowStartPoint1 = CGPointMake(arrowStartX1, (perpendicularSlope * (arrowStartX1 - arrowEdgeStartPoint.x)) + arrowEdgeStartPoint.y);
+            
+            arrowStartX2 = arrowEdgeStartPoint.x + (kARROW_DISTANCE_FROM_EDGE / (sqrt(1+pow(perpendicularSlope, 2.0))));
+            arrowStartPoint2 = CGPointMake(arrowStartX2, (perpendicularSlope * (arrowStartX2 - arrowEdgeStartPoint.x)) + arrowEdgeStartPoint.y);
+            
+            
+            CGContextMoveToPoint(context, arrowStartPoint1.x, arrowStartPoint1.y);
+            CGContextAddLineToPoint(context, circleIntersectPoint.x, circleIntersectPoint.y);
+            CGContextMoveToPoint(context, arrowStartPoint2.x, arrowStartPoint2.y);
+            CGContextAddLineToPoint(context, circleIntersectPoint.x, circleIntersectPoint.y);
+           
 //                CGFloat distance = sqrt(pow(destNodeCenter.x - startNodeCenter.x, 2) + pow(destNodeCenter.y - startNodeCenter.y, 2));                
 //                CGPoint midpoint = CGPointMake((startNodeCenter.x + destNodeCenter.x)/2, (startNodeCenter.y + destNodeCenter.y)/2);
 //                CGFloat tangentPerpYIntercept = (perpSlope * -midpoint.x) + midpoint.y;
@@ -122,8 +126,8 @@
 //                
 //                CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
 //                CGContextAddQuadCurveToPoint(context, tangentLineEndPoint.x, tangentLineEndPoint.y, destNodeCenter.x, destNodeCenter.y);
-                
-                
+            
+            
 //                CGFloat opposite = startNodeCenter.y - destNodeCenter.y;
 //                CGFloat hypotenuse = distance;
 //                CGFloat angle = asinf(opposite/hypotenuse) * 180 / M_PI;
@@ -151,13 +155,9 @@
 //                CGPoint rotatedPoint = CGPointMake(rotatedX, rotatedY);
 //
 //                //NSLog(@"%@", NSStringFromCGPoint(rotatedPoint));
-//                //CGContextMoveToPoint(context, <#CGFloat x#>, <#CGFloat y#>)
+//                //CGContextMoveToPoint(context, ￼, ￼)
 //                
 //                //CGContextAddArcToPoint(context, tangentLineEndPoint.x, tangentLineEndPoint.y, destNodeCenter.x, destNodeCenter.y, 100);
-            }
-            
-            CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
-            CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
         }
         
         

@@ -107,9 +107,7 @@
 #pragma mark GMEdgeSelectionDelegate
 
 - (void)edgeSelected:(GMEdge *)edge {
-    NSLog(@"edge selected: %d", edge.weight);
     selectedEdge = edge;
-    [_graphCanvass setNeedsDisplay];
     
     GMWeightPickerViewController *weightPickerViewController = [[GMWeightPickerViewController alloc] initWithNibName:nil bundle:nil];
     weightPickerViewController.delegate = self;
