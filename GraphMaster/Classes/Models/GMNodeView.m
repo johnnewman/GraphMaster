@@ -69,6 +69,12 @@
     NSLog(@"tap occurred in node %d", _number);
 }
 
+- (void)longPressOccurred:(UILongPressGestureRecognizer*)longPressGesture {
+    NSLog(@"long press");
+    if ([_delegate respondsToSelector:@selector(nodeViewNeedsOptionsDialog:)])
+        [_delegate nodeViewNeedsOptionsDialog:self];
+}
+
 - (void)setNumber:(NSUInteger)number {
     _number = number;
     _numberLabel.text = [NSString stringWithFormat:@"%d", _number];

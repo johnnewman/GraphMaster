@@ -1,12 +1,12 @@
 //
-//  GMWeightPickerViewController.m
+//  GMEdgeOptionsViewController.m
 //  GraphMaster
 //
 //  Created by John Newman on 4/17/13.
 //  Copyright (c) 2013 John Newman. All rights reserved.
 //
 
-#import "GMWeightPickerViewController.h"
+#import "GMEdgeOptionsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kPICKER_WIDTH 75
@@ -15,11 +15,11 @@
 #define kDELETE_BUTTON_HEIGHT 40
 #define kMAX_VALUE 100
 
-@interface GMWeightPickerViewController ()
+@interface GMEdgeOptionsViewController ()
 - (void)addWeightPicker;
 @end
 
-@implementation GMWeightPickerViewController
+@implementation GMEdgeOptionsViewController
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

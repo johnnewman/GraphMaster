@@ -11,7 +11,7 @@
 #import "GMNodeView.h"
 #import "GMEdge.h"
 #import <QuartzCore/QuartzCore.h>
-#import "GMWeightPickerViewController.h"
+#import "GMEdgeOptionsViewController.h"
 #import "WEPopoverController.h"
 
 
@@ -70,6 +70,11 @@
     node.frame = CGRectMake(point.x - kNODE_RADIUS, point.y - kNODE_RADIUS, kNODE_RADIUS*2, kNODE_RADIUS*2);
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:node action:@selector(tapOccurred:)];
     [node addGestureRecognizer:tapGesture];
+    
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:node action:@selector(longPressOccurred:)];
+    longPressGesture.minimumPressDuration = 1.0;
+    
+    [node addGestureRecognizer:longPressGesture];
     [_graphCanvass addSubview:node];
     [_graphCanvass bringSubviewToFront:_drawTypeSegControl];
 }
@@ -126,7 +131,7 @@
 - (void)edgeSelected:(GMEdge *)edge {
     selectedEdge = edge;
     
-    GMWeightPickerViewController *weightPickerViewController = [[GMWeightPickerViewController alloc] initWithNibName:nil bundle:nil];
+    GMEdgeOptionsViewController *weightPickerViewController = [[GMEdgeOptionsViewController alloc] initWithNibName:nil bundle:nil];
     weightPickerViewController.delegate = self;
     popoverController = [[WEPopoverController alloc] initWithContentViewController:weightPickerViewController];
     [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
@@ -175,13 +180,13 @@
 
 
 #pragma mark -
-#pragma mark GMWeightPickerViewControllerDelegate Methods
+#pragma mark GMEdgeOptionsDelegate Methods
 
-- (void)weightPickerViewController:(GMWeightPickerViewController *)weightPickerViewController didSelectWeight:(NSInteger)weight {
+- (void)weightPickerViewController:(GMEdgeOptionsViewController *)weightPickerViewController didSelectWeight:(NSInteger)weight {
     selectedEdge.weight = weight;
 }
 
-- (void)weightPickerViewControllerDeleteButtonSelected:(GMWeightPickerViewController *)weightPickerViewController {
+- (void)weightPickerViewControllerDeleteButtonSelected:(GMEdgeOptionsViewController *)weightPickerViewController {
     [popoverController dismissPopoverAnimated:YES];
     [selectedEdge.startNode removeOutgoingEdge:selectedEdge];
     [selectedEdge.destNode removeIncomingEdge:selectedEdge];

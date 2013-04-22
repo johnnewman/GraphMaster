@@ -13,4 +13,5 @@
 @protocol GMNodeViewSelectionDelegate <NSObject>
 - (void)nodeViewTouchesBegan:(GMNodeView*)nodeView;
 - (void)nodeViewIsMovingOrigin:(GMNodeView*)nodeView;
+- (void)nodeViewNeedsOptionsDialog:(GMNodeView*)nodeView;
 @end

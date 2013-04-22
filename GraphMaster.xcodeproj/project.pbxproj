@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522058121724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058111724C262004EE526 /* GMEdgeOptionsViewController.m */; };
+		522058131724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058111724C262004EE526 /* GMEdgeOptionsViewController.m */; };
 		52B3B8F3171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F4171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F5171F78A200B09420 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8ED171F78A200B09420 /* WEPopoverContainerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -45,8 +47,6 @@
 		52B3B927171F78D800B09420 /* popoverBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3B90A171F78D800B09420 /* popoverBg@2x.png */; };
 		52B3B928171F78D800B09420 /* popoverBgSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3B90B171F78D800B09420 /* popoverBgSimple.png */; };
 		52B3B929171F78D800B09420 /* popoverBgSimple.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B3B90B171F78D800B09420 /* popoverBgSimple.png */; };
-		52B3B92D171F7B4900B09420 /* GMWeightPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */; };
-		52B3B92E171F7B4900B09420 /* GMWeightPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */; };
 		52B3B931172494DF00B09420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B3B930172494DF00B09420 /* QuartzCore.framework */; };
 		52CD7BC1170BB52200247F75 /* GMNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CD7BC0170BB52200247F75 /* GMNodeView.m */; };
 		52CD7BC2170BB52200247F75 /* GMNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CD7BC0170BB52200247F75 /* GMNodeView.m */; };
@@ -86,6 +86,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5220580F1724C262004EE526 /* GMEdgeOptionsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeOptionsDelegate.h; path = "Classes/Edge Options View Controller/GMEdgeOptionsDelegate.h"; sourceTree = "<group>"; };
+		522058101724C262004EE526 /* GMEdgeOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeOptionsViewController.h; path = "Classes/Edge Options View Controller/GMEdgeOptionsViewController.h"; sourceTree = "<group>"; };
+		522058111724C262004EE526 /* GMEdgeOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMEdgeOptionsViewController.m; path = "Classes/Edge Options View Controller/GMEdgeOptionsViewController.m"; sourceTree = "<group>"; };
 		52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeViewSelectionDelegate.h; path = Classes/Models/GMNodeViewSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeSelectionDelegate.h; path = Classes/Models/GMEdgeSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8EA171F78A200B09420 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
@@ -112,9 +115,6 @@
 		52B3B909171F78D800B09420 /* popoverBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverBg.png; sourceTree = "<group>"; };
 		52B3B90A171F78D800B09420 /* popoverBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popoverBg@2x.png"; sourceTree = "<group>"; };
 		52B3B90B171F78D800B09420 /* popoverBgSimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popoverBgSimple.png; sourceTree = "<group>"; };
-		52B3B92B171F7B4900B09420 /* GMWeightPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMWeightPickerViewController.h; path = "Classes/Weight Picker View Controller/GMWeightPickerViewController.h"; sourceTree = "<group>"; };
-		52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMWeightPickerViewController.m; path = "Classes/Weight Picker View Controller/GMWeightPickerViewController.m"; sourceTree = "<group>"; };
-		52B3B92F1724910700B09420 /* GMWeightPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMWeightPickerDelegate.h; path = "Classes/Weight Picker View Controller/GMWeightPickerDelegate.h"; sourceTree = "<group>"; };
 		52B3B930172494DF00B09420 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		52CD7BBF170BB52200247F75 /* GMNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeView.h; path = Classes/Models/GMNodeView.h; sourceTree = "<group>"; };
 		52CD7BC0170BB52200247F75 /* GMNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMNodeView.m; path = Classes/Models/GMNodeView.m; sourceTree = "<group>"; };
@@ -172,6 +172,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5220580B1724C1BA004EE526 /* Node Options View Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Node Options View Controller";
+			sourceTree = "<group>";
+		};
+		5220580D1724C1F4004EE526 /* Edge */ = {
+			isa = PBXGroup;
+			children = (
+				52EE9CEF16F141D600284359 /* GMEdge.h */,
+				52EE9CF016F141D600284359 /* GMEdge.m */,
+				52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */,
+			);
+			name = Edge;
+			sourceTree = "<group>";
+		};
+		5220580E1724C1FA004EE526 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				52CD7BBF170BB52200247F75 /* GMNodeView.h */,
+				52CD7BC0170BB52200247F75 /* GMNodeView.m */,
+				52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */,
+			);
+			name = Node;
+			sourceTree = "<group>";
+		};
 		52B3B8E9171F78A200B09420 /* WEPopover */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,7 +213,7 @@
 				52B3B8F2171F78A200B09420 /* WETouchableView.m */,
 			);
 			name = WEPopover;
-			path = Classes/Popover;
+			path = GraphMaster/Classes/Popover;
 			sourceTree = "<group>";
 		};
 		52B3B8FB171F78D800B09420 /* Resources */ = {
@@ -219,19 +246,20 @@
 			path = WEPopover;
 			sourceTree = "<group>";
 		};
-		52B3B92A171F7AF200B09420 /* Weight View Controller */ = {
+		52B3B92A171F7AF200B09420 /* Edge Options View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				52B3B92B171F7B4900B09420 /* GMWeightPickerViewController.h */,
-				52B3B92C171F7B4900B09420 /* GMWeightPickerViewController.m */,
-				52B3B92F1724910700B09420 /* GMWeightPickerDelegate.h */,
+				522058101724C262004EE526 /* GMEdgeOptionsViewController.h */,
+				522058111724C262004EE526 /* GMEdgeOptionsViewController.m */,
+				5220580F1724C262004EE526 /* GMEdgeOptionsDelegate.h */,
 			);
-			name = "Weight View Controller";
+			name = "Edge Options View Controller";
 			sourceTree = "<group>";
 		};
 		52EE9C9216F13FEC00284359 = {
 			isa = PBXGroup;
 			children = (
+				52B3B8E9171F78A200B09420 /* WEPopover */,
 				52EE9CA716F13FEC00284359 /* GraphMaster */,
 				52EE9CCE16F13FED00284359 /* GraphMasterTests */,
 				52EE9CA016F13FEC00284359 /* Frameworks */,
@@ -263,11 +291,12 @@
 		52EE9CA716F13FEC00284359 /* GraphMaster */ = {
 			isa = PBXGroup;
 			children = (
-				52B3B8E9171F78A200B09420 /* WEPopover */,
-				52B3B92A171F7AF200B09420 /* Weight View Controller */,
 				52EE9CE916F1418F00284359 /* Models */,
-				52EE9CDF16F1412D00284359 /* Delegate */,
 				52EE9CE016F1413300284359 /* Graph View Controller */,
+				52EE9CF416F1437400284359 /* Canvass View */,
+				5220580B1724C1BA004EE526 /* Node Options View Controller */,
+				52B3B92A171F7AF200B09420 /* Edge Options View Controller */,
+				52EE9CDF16F1412D00284359 /* App Delegate */,
 				52EE9CA816F13FEC00284359 /* Supporting Files */,
 				52B3B8FB171F78D800B09420 /* Resources */,
 			);
@@ -307,13 +336,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		52EE9CDF16F1412D00284359 /* Delegate */ = {
+		52EE9CDF16F1412D00284359 /* App Delegate */ = {
 			isa = PBXGroup;
 			children = (
 				52EE9CE516F1415A00284359 /* GMAppDelegate.h */,
 				52EE9CE616F1415A00284359 /* GMAppDelegate.m */,
 			);
-			name = Delegate;
+			name = "App Delegate";
 			sourceTree = "<group>";
 		};
 		52EE9CE016F1413300284359 /* Graph View Controller */ = {
@@ -323,7 +352,6 @@
 				52EE9CE216F1414F00284359 /* GMGraphViewController.m */,
 				52EE9CBC16F13FED00284359 /* GMGraphViewController_iPhone.xib */,
 				52EE9CBF16F13FED00284359 /* GMGraphViewController_iPad.xib */,
-				52EE9CF416F1437400284359 /* Canvass */,
 			);
 			name = "Graph View Controller";
 			sourceTree = "<group>";
@@ -331,23 +359,19 @@
 		52EE9CE916F1418F00284359 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52EE9CEF16F141D600284359 /* GMEdge.h */,
-				52EE9CF016F141D600284359 /* GMEdge.m */,
-				52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */,
-				52CD7BBF170BB52200247F75 /* GMNodeView.h */,
-				52CD7BC0170BB52200247F75 /* GMNodeView.m */,
-				52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */,
+				5220580E1724C1FA004EE526 /* Node */,
+				5220580D1724C1F4004EE526 /* Edge */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
-		52EE9CF416F1437400284359 /* Canvass */ = {
+		52EE9CF416F1437400284359 /* Canvass View */ = {
 			isa = PBXGroup;
 			children = (
 				52EE9CF916F1461F00284359 /* GMGraphCanvass.h */,
 				52EE9CFA16F1461F00284359 /* GMGraphCanvass.m */,
 			);
-			name = Canvass;
+			name = "Canvass View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,7 +526,7 @@
 				52B3B8F5171F78A200B09420 /* WEPopoverContainerView.m in Sources */,
 				52B3B8F7171F78A200B09420 /* WEPopoverController.m in Sources */,
 				52B3B8F9171F78A200B09420 /* WETouchableView.m in Sources */,
-				52B3B92D171F7B4900B09420 /* GMWeightPickerViewController.m in Sources */,
+				522058121724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +544,7 @@
 				52B3B8F6171F78A200B09420 /* WEPopoverContainerView.m in Sources */,
 				52B3B8F8171F78A200B09420 /* WEPopoverController.m in Sources */,
 				52B3B8FA171F78A200B09420 /* WETouchableView.m in Sources */,
-				52B3B92E171F7B4900B09420 /* GMWeightPickerViewController.m in Sources */,
+				522058131724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
