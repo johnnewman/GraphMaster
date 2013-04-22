@@ -16,10 +16,13 @@
 
 
 @interface GMGraphViewController ()
-- (IBAction)canvassTapGesture:(UITapGestureRecognizer*)tapGestureRecognizer;
-- (IBAction)drawStyleChanged;
 
-- (void)addNewNodeToTapLocation:(CGPoint)tapLocation;
+- (IBAction)drawStyleChanged;
+- (IBAction)canvassTapGesture:(UITapGestureRecognizer*)tapGestureRecognizer;
+- (void)addNewNodeAtPoint:(CGPoint)point;
+- (void)drawNewEdgeIfNeededForPoint:(CGPoint)point;
+- (GMNodeView*)nodeInPoint:(CGPoint)point;
+- (WEPopoverContainerViewProperties *)improvedContainerViewProperties;
 
 @property (nonatomic, weak) IBOutlet GMGraphCanvass *graphCanvass;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *drawTypeSegControl;
@@ -43,41 +46,58 @@
 }
 
 
+#pragma mark -
+#pragma mark Draw Style Action
 
+- (IBAction)drawStyleChanged {
+    NSUInteger selectedDrawType = _drawTypeSegControl.selectedSegmentIndex;
+    currentDrawType = selectedDrawType;
+}
+
+
+#pragma mark -
+#pragma mark New Node Methods
 
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer {    
     if (currentDrawType == NODE_TYPE)
-        [self addNewNodeToTapLocation:[tapGestureRecognizer locationInView:_graphCanvass]];
+        [self addNewNodeAtPoint:[tapGestureRecognizer locationInView:_graphCanvass]];
 }
 
-- (void)addNewNodeToTapLocation:(CGPoint)tapLocation {
+- (void)addNewNodeAtPoint:(CGPoint)point {
     GMNodeView *node = [[GMNodeView alloc] initWithNumber:[nodes count]];
     node.delegate = self;
     [nodes addObject:node];
-    node.frame = CGRectMake(tapLocation.x - kNODE_RADIUS, tapLocation.y - kNODE_RADIUS, kNODE_RADIUS*2, kNODE_RADIUS*2);
+    node.frame = CGRectMake(point.x - kNODE_RADIUS, point.y - kNODE_RADIUS, kNODE_RADIUS*2, kNODE_RADIUS*2);
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:node action:@selector(tapOccurred:)];
     [node addGestureRecognizer:tapGesture];
     [_graphCanvass addSubview:node];
     [_graphCanvass bringSubviewToFront:_drawTypeSegControl];
 }
 
+
+#pragma mark -
+#pragma mark New Edge Methods
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (_graphCanvass.isDrawingNewEdge) {
-        CGPoint endPoint = [[touches anyObject] locationInView:_graphCanvass];
-        GMNodeView *destinationNode = [self nodeInPoint:endPoint];
-        if (destinationNode && destinationNode != _graphCanvass.nodeWithTouches) {
-            int randWeight = arc4random() % 100;
-            GMEdge *newEdge = [[GMEdge alloc] initWithWeight:randWeight startNode:_graphCanvass.nodeWithTouches destNode:destinationNode];
-            newEdge.delegate = self;
-            [_graphCanvass addSubview:newEdge.weightButton];
-            [_graphCanvass.nodeWithTouches addOutgoingEdge:newEdge];
-            [destinationNode addIncomingEdge:newEdge];
-            [_graphCanvass setNeedsDisplay];
-        }
+        [self drawNewEdgeIfNeededForPoint:[[touches anyObject] locationInView:_graphCanvass]];
+        _graphCanvass.isDrawingNewEdge = NO;
     }
-    _graphCanvass.isDrawingNewEdge = NO;
     [_graphCanvass setNeedsDisplay];
     [super touchesEnded:touches withEvent:event];
+}
+
+- (void)drawNewEdgeIfNeededForPoint:(CGPoint)point {
+    GMNodeView *destinationNode = [self nodeInPoint:point];
+    if (destinationNode && destinationNode != _graphCanvass.nodeWithTouches) {
+        int randWeight = arc4random() % 100;
+        GMEdge *newEdge = [[GMEdge alloc] initWithWeight:randWeight startNode:_graphCanvass.nodeWithTouches destNode:destinationNode];
+        newEdge.delegate = self;
+        [_graphCanvass addSubview:newEdge.weightButton];
+        [_graphCanvass.nodeWithTouches addOutgoingEdge:newEdge];
+        [destinationNode addIncomingEdge:newEdge];
+        [_graphCanvass setNeedsDisplay];
+    }
 }
 
 - (GMNodeView*)nodeInPoint:(CGPoint)point {
@@ -87,10 +107,6 @@
     return nil;
 }
 
-- (IBAction)drawStyleChanged {
-    NSUInteger selectedDrawType = _drawTypeSegControl.selectedSegmentIndex;
-    currentDrawType = selectedDrawType;
-}
 
 #pragma mark -
 #pragma mark GMNodeViewSelectionDelegate
@@ -102,6 +118,7 @@
 - (void)nodeViewIsMovingOrigin:(GMNodeView *)nodeView {
     [_graphCanvass setNeedsDisplay];
 }
+
 
 #pragma mark -
 #pragma mark GMEdgeSelectionDelegate
@@ -116,6 +133,10 @@
     [popoverController presentPopoverFromRect:edge.weightButton.frame inView:_graphCanvass permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     
 }
+
+
+#pragma mark -
+#pragma mark Popover Properties
 
 - (WEPopoverContainerViewProperties *)improvedContainerViewProperties {
 	
