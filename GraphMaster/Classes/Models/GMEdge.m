@@ -41,11 +41,11 @@
     }
 }
 
-- (void)centerWeightLabel {
-    CGPoint startMidPoint = CGPointMake(CGRectGetMidX(_startNode.frame), CGRectGetMidY(_startNode.frame));
-    CGPoint destMidPoint = CGPointMake(CGRectGetMidX(_destNode.frame), CGRectGetMidY(_destNode.frame));
-    CGPoint midPointBetweenNodes = CGPointMake((destMidPoint.x + startMidPoint.x)/2, (destMidPoint.y + startMidPoint.y)/2);
-    _weightButton.center = midPointBetweenNodes;
+- (void)centerWeightLabelToPoint:(CGPoint)point {
+    //    CGPoint startMidPoint = CGPointMake(CGRectGetMidX(_startNode.frame), CGRectGetMidY(_startNode.frame));
+    //    CGPoint destMidPoint = CGPointMake(CGRectGetMidX(_destNode.frame), CGRectGetMidY(_destNode.frame));
+    //    CGPoint midPointBetweenNodes = CGPointMake((destMidPoint.x + startMidPoint.x)/2, (destMidPoint.y + startMidPoint.y)/2);
+    _weightButton.center = point;
 }
 
 - (void)setWeight:(NSInteger)weight {
@@ -53,7 +53,8 @@
     NSString *weightText = [NSString stringWithFormat:@" %d ", _weight];
     [_weightButton setTitle:weightText forState:UIControlStateNormal];
     [_weightButton sizeToFit];
-    [self centerWeightLabel];
+    
+//    [self centerWeightLabel];
 }
 
 @end

@@ -20,6 +20,6 @@
 @property (nonatomic, weak)id<GMEdgeSelectionDelegate> delegate;
 
 - (id)initWithWeight:(NSInteger)weight startNode:(GMNodeView*)startNode destNode:(GMNodeView*)destNode;
-- (void)centerWeightLabel;
+- (void)centerWeightLabelToPoint:(CGPoint)point;
 
 @end

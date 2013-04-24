@@ -7,6 +7,7 @@
 //
 
 #import "GMNodeView.h"
+#import "GMEdge.h"
 #import "GMGraphViewController.h"
 
 @interface GMNodeView ()
@@ -31,8 +32,8 @@
         
         self.backgroundColor = [UIColor clearColor];
         
-        _incomingEdges = [NSMutableArray array];
         _outgoingEdges = [NSMutableArray array];
+        _outgoingNodes = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
     }
     return self;
 }
@@ -80,20 +81,15 @@
     _numberLabel.text = [NSString stringWithFormat:@"%d", _number];
 }
 
-- (void)addIncomingEdge:(GMEdge *)edge {
-    [_incomingEdges addObject:edge];
-}
-
-- (void)removeIncomingEdge:(GMEdge *)edge {
-    [_incomingEdges removeObject:edge];
-}
 
 - (void)addOutgoingEdge:(GMEdge *)edge {
     [_outgoingEdges addObject:edge];
+    [_outgoingNodes addObject:edge.destNode];
 }
 
 - (void)removeOutgoingEdge:(GMEdge *)edge {
     [_outgoingEdges removeObject:edge];
+    [_outgoingNodes removeObject:edge.destNode];
 }
 
 - (void)drawRect:(CGRect)rect

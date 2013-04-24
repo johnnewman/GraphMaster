@@ -94,13 +94,12 @@
 
 - (void)drawNewEdgeIfNeededForPoint:(CGPoint)point {
     GMNodeView *destinationNode = [self nodeInPoint:point];
-    if (destinationNode && destinationNode != _graphCanvass.nodeWithTouches) {
+    if (destinationNode && destinationNode != _graphCanvass.nodeWithTouches && ![_graphCanvass.nodeWithTouches.outgoingNodes containsObject:destinationNode]) {
         int randWeight = arc4random() % 100;
         GMEdge *newEdge = [[GMEdge alloc] initWithWeight:randWeight startNode:_graphCanvass.nodeWithTouches destNode:destinationNode];
         newEdge.delegate = self;
         [_graphCanvass addSubview:newEdge.weightButton];
         [_graphCanvass.nodeWithTouches addOutgoingEdge:newEdge];
-        [destinationNode addIncomingEdge:newEdge];
         [_graphCanvass setNeedsDisplay];
     }
 }
@@ -189,9 +188,14 @@
 - (void)weightPickerViewControllerDeleteButtonSelected:(GMEdgeOptionsViewController *)weightPickerViewController {
     [popoverController dismissPopoverAnimated:YES];
     [selectedEdge.startNode removeOutgoingEdge:selectedEdge];
-    [selectedEdge.destNode removeIncomingEdge:selectedEdge];
     [selectedEdge.weightButton removeFromSuperview];
     [_graphCanvass setNeedsDisplay];
 }
 
 @end
+
+
+
+
+
+

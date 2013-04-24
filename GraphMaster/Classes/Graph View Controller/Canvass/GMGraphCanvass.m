@@ -39,6 +39,7 @@
 {
     CGRect startNodeFrame, destNodeFrame;
     CGPoint startNodeCenter, destNodeCenter;
+    CGPoint straightEdgeMidpoint;
     CGPoint nodeIntersectPoint;
     CGPoint bezierControlPoint;
     CGPoint bezierIntersectPoint;
@@ -60,45 +61,36 @@
     for (GMNodeView *node in _nodes) {
         for (GMEdge *edge in node.outgoingEdges) {
             
-            
-            
-            //STRAIGHT LINE
-            
-            [edge centerWeightLabel];
-            
             startNodeFrame = edge.startNode.frame;
             startNodeCenter = CGPointMake(CGRectGetMidX(startNodeFrame), CGRectGetMidY(startNodeFrame));
             destNodeFrame = edge.destNode.frame;
             destNodeCenter = CGPointMake(CGRectGetMidX(destNodeFrame), CGRectGetMidY(destNodeFrame));
             
-            CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
-            CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
-            
-            
-            
-            nodeIntersectPoint = [self getNodeIntersectPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
-            arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:nodeIntersectPoint endPoint:destNodeCenter slope:(destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x)];
-            [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:nodeIntersectPoint];            
-            
-            
-            
-            
-            
-            //BEZIER LINE
-            
-            bezierControlPoint = [self getBezierControlPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
-            
-            
-            CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
-            CGContextAddQuadCurveToPoint(context, bezierControlPoint.x, bezierControlPoint.y, destNodeCenter.x, destNodeCenter.y);
-            
-            
-            bezierCenterPoint = CGPointMake(0.25 * startNodeCenter.x + 0.5 * bezierControlPoint.x + 0.25 * destNodeCenter.x,
-                                            0.25 * startNodeCenter.y + 0.5 * bezierControlPoint.y + 0.25 * destNodeCenter.y);
-            bezierIntersectPoint = [self estimateBezierIntersectWithStartPoint:startNodeCenter endPoint:destNodeCenter controlPoint:bezierControlPoint];
-            bezierEstimationSlope = (bezierCenterPoint.y - bezierIntersectPoint.y) / (bezierCenterPoint.x - bezierIntersectPoint.x);
-            arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:bezierIntersectPoint endPoint:destNodeCenter slope:bezierEstimationSlope];
-            [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:bezierIntersectPoint];
+              //edges are reciprocally connected, need to draw bezier curve
+            if ([edge.destNode.outgoingNodes containsObject:node]) {
+                bezierControlPoint = [self getBezierControlPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
+                CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
+                CGContextAddQuadCurveToPoint(context, bezierControlPoint.x, bezierControlPoint.y, destNodeCenter.x, destNodeCenter.y);
+                bezierCenterPoint = CGPointMake(0.25 * startNodeCenter.x + 0.5 * bezierControlPoint.x + 0.25 * destNodeCenter.x,
+                                                0.25 * startNodeCenter.y + 0.5 * bezierControlPoint.y + 0.25 * destNodeCenter.y);
+                
+                [edge centerWeightLabelToPoint:bezierCenterPoint];
+                
+                bezierIntersectPoint = [self estimateBezierIntersectWithStartPoint:startNodeCenter endPoint:destNodeCenter controlPoint:bezierControlPoint];
+                bezierEstimationSlope = (bezierCenterPoint.y - bezierIntersectPoint.y) / (bezierCenterPoint.x - bezierIntersectPoint.x);
+                arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:bezierIntersectPoint endPoint:destNodeCenter slope:bezierEstimationSlope];
+                [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:bezierIntersectPoint];
+            }
+            else {
+                straightEdgeMidpoint = CGPointMake((destNodeCenter.x + startNodeCenter.x)/2, (destNodeCenter.y + startNodeCenter.y)/2);
+                [edge centerWeightLabelToPoint:straightEdgeMidpoint];
+                
+                CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
+                CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
+                nodeIntersectPoint = [self getNodeIntersectPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
+                arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:nodeIntersectPoint endPoint:destNodeCenter slope:(destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x)];
+                [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:nodeIntersectPoint];
+            }
         }
     }
     CGContextStrokePath(context);
@@ -108,6 +100,7 @@
     CGFloat slope = (endPoint.y - startPoint.y) / (endPoint.x - startPoint.x);
     CGFloat nodeIntersectX;
     
+    [self prepareSlope:&slope andPerpSlope:nil];
     if (startPoint.x < endPoint.x)
         nodeIntersectX = endPoint.x - (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
     else
@@ -175,10 +168,12 @@
     else if (*slope == INFINITY)
         *slope = -200;
     
-    if (*slope == 0)
-        *perpSlope = 200;
-    else
-        *perpSlope = -1 / *slope;
+    if (perpSlope != nil) {
+        if (*slope == 0)
+            *perpSlope = 200;
+        else
+            *perpSlope = -1 / *slope;
+    }
 }
 
 - (CGPoint)estimateBezierIntersectWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint {

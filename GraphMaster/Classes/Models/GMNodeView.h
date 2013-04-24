@@ -18,8 +18,8 @@
 
 @property (nonatomic, weak) id<GMNodeViewSelectionDelegate>delegate;
 @property (nonatomic) NSUInteger number;
-@property (nonatomic, strong) NSMutableArray *outgoingEdges;
-@property (nonatomic, strong) NSMutableArray *incomingEdges;
+@property (nonatomic, strong, readonly) NSMutableArray *outgoingEdges;
+@property (nonatomic, strong, readonly) NSHashTable *outgoingNodes;
 
 
 - (id)initWithNumber:(NSUInteger)nodeNumber;
@@ -27,8 +27,6 @@
 - (void)tapOccurred:(UITapGestureRecognizer*)tapGesture;
 - (void)longPressOccurred:(UILongPressGestureRecognizer*)longPressGesture;
 
-- (void)addIncomingEdge:(GMEdge*)edge;
-- (void)removeIncomingEdge:(GMEdge*)edge;
 - (void)addOutgoingEdge:(GMEdge*)edge;
 - (void)removeOutgoingEdge:(GMEdge*)edge;
 
