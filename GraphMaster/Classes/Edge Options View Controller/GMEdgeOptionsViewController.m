@@ -46,7 +46,7 @@
 }
 
 - (void)addWeightPicker {
-    weightPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, kPICKER_WIDTH, kPICKER_HEIGHT)];
+    UIPickerView *weightPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, kPICKER_WIDTH, kPICKER_HEIGHT)];
     weightPicker.showsSelectionIndicator = YES;
     
     CALayer* mask = [[CALayer alloc] init];

@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GMEdgeOptionsDelegate.h"
 
-@interface GMEdgeOptionsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
-    UIPickerView *weightPicker;
-}
+@interface GMEdgeOptionsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property(nonatomic, weak)id<GMEdgeOptionsDelegate> delegate;
 
