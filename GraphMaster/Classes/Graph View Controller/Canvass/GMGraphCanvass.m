@@ -117,9 +117,9 @@
     [self prepareSlope:&slope andPerpSlope:&perpSlope];
     
     if (startPoint.y < endPoint.y)
-        bezierCurveXOffset = midpoint.x + (60 / (sqrt(1+pow(perpSlope, 2.0))));
+        bezierCurveXOffset = midpoint.x + (kBEZIER_PATH_CONTROL_OFFSET / (sqrt(1+pow(perpSlope, 2.0))));
     else
-        bezierCurveXOffset = midpoint.x - (60 / (sqrt(1+pow(perpSlope, 2.0))));
+        bezierCurveXOffset = midpoint.x - (kBEZIER_PATH_CONTROL_OFFSET / (sqrt(1+pow(perpSlope, 2.0))));
     return CGPointMake(bezierCurveXOffset, (perpSlope * (bezierCurveXOffset - midpoint.x)) + midpoint.y);
 }
 
