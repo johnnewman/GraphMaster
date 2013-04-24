@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		522058121724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058111724C262004EE526 /* GMEdgeOptionsViewController.m */; };
 		522058131724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058111724C262004EE526 /* GMEdgeOptionsViewController.m */; };
+		522058161724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */; };
+		522058171724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */; };
 		52B3B8F3171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F4171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F5171F78A200B09420 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8ED171F78A200B09420 /* WEPopoverContainerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -89,6 +91,8 @@
 		5220580F1724C262004EE526 /* GMEdgeOptionsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeOptionsDelegate.h; path = "Classes/Edge Options View Controller/GMEdgeOptionsDelegate.h"; sourceTree = "<group>"; };
 		522058101724C262004EE526 /* GMEdgeOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeOptionsViewController.h; path = "Classes/Edge Options View Controller/GMEdgeOptionsViewController.h"; sourceTree = "<group>"; };
 		522058111724C262004EE526 /* GMEdgeOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMEdgeOptionsViewController.m; path = "Classes/Edge Options View Controller/GMEdgeOptionsViewController.m"; sourceTree = "<group>"; };
+		522058141724C4C1004EE526 /* GMNodeOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeOptionsViewController.h; path = "Classes/Node Options View Controller/GMNodeOptionsViewController.h"; sourceTree = "<group>"; };
+		522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMNodeOptionsViewController.m; path = "Classes/Node Options View Controller/GMNodeOptionsViewController.m"; sourceTree = "<group>"; };
 		52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeViewSelectionDelegate.h; path = Classes/Models/GMNodeViewSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeSelectionDelegate.h; path = Classes/Models/GMEdgeSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8EA171F78A200B09420 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 		5220580B1724C1BA004EE526 /* Node Options View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				522058141724C4C1004EE526 /* GMNodeOptionsViewController.h */,
+				522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */,
 			);
 			name = "Node Options View Controller";
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 				52B3B8F7171F78A200B09420 /* WEPopoverController.m in Sources */,
 				52B3B8F9171F78A200B09420 /* WETouchableView.m in Sources */,
 				522058121724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */,
+				522058161724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +552,7 @@
 				52B3B8F8171F78A200B09420 /* WEPopoverController.m in Sources */,
 				52B3B8FA171F78A200B09420 /* WETouchableView.m in Sources */,
 				522058131724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */,
+				522058171724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
