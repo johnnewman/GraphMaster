@@ -11,6 +11,13 @@
 #import "GMNodeView.h"
 #import "GMEdge.h"
 
+@interface PointPair : NSObject
+@property(nonatomic) CGPoint point1;
+@property(nonatomic) CGPoint point2;
+@end
+@implementation PointPair
+@end
+
 @implementation GMGraphCanvass
 
 
@@ -31,19 +38,13 @@
 - (void)drawRect:(CGRect)rect
 {
     CGRect startNodeFrame, destNodeFrame;
-    CGPoint destNodeCenter, startNodeCenter;
-    
-    CGFloat slope, perpendicularSlope;
-    
-    CGFloat circleIntersectX;
-    CGPoint circleIntersectPoint;
-    
-    CGFloat arrowEdgeStartX;
-    CGPoint arrowEdgeStartPoint;
-    
-    CGFloat arrowStartX1, arrowStartX2;
-    CGPoint arrowStartPoint1, arrowStartPoint2;
-    
+    CGPoint startNodeCenter, destNodeCenter;
+    CGPoint nodeIntersectPoint;
+    CGPoint bezierControlPoint;
+    CGPoint bezierIntersectPoint;
+    CGPoint bezierCenterPoint;
+    CGFloat bezierEstimationSlope;
+    PointPair *arrowEdgeStartPoints;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, kEDGE_WIDTH);
@@ -59,6 +60,10 @@
     for (GMNodeView *node in _nodes) {
         for (GMEdge *edge in node.outgoingEdges) {
             
+            
+            
+            //STRAIGHT LINE
+            
             [edge centerWeightLabel];
             
             startNodeFrame = edge.startNode.frame;
@@ -69,100 +74,147 @@
             CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
             CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
             
-                        
-            //ARROW DRAWING
-            
-            slope = (destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x);
-            
-              //have to avoid vertical and horizontal lines for the arrow drawing
-            if (slope == -INFINITY)
-                slope = 200;
-            else if (slope == INFINITY)
-                slope = -200;
-            
-            if (slope == 0)
-                perpendicularSlope = 200;
-            else
-                perpendicularSlope = -1/slope;
             
             
-              //calculate the edge/circle intersect point
-            if (startNodeCenter.x < destNodeCenter.x)
-                circleIntersectX = destNodeCenter.x - (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
-            else
-                circleIntersectX = destNodeCenter.x + (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
-            circleIntersectPoint = CGPointMake(circleIntersectX, (slope * (circleIntersectX - destNodeCenter.x)) + destNodeCenter.y);
+            nodeIntersectPoint = [self getNodeIntersectPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
+            arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:nodeIntersectPoint endPoint:destNodeCenter slope:(destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x)];
+            [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:nodeIntersectPoint];            
             
             
             
             
-              //step back from the node to start arrow
-            if (startNodeCenter.x < destNodeCenter.x)
-                arrowEdgeStartX = circleIntersectPoint.x - (kARROW_DISTANCE_FROM_NODE / (sqrt(1+pow(slope, 2.0))));
-            else
-                arrowEdgeStartX = circleIntersectPoint.x + (kARROW_DISTANCE_FROM_NODE / (sqrt(1+pow(slope, 2.0))));
-            arrowEdgeStartPoint = CGPointMake(arrowEdgeStartX, (slope * (arrowEdgeStartX - circleIntersectPoint.x)) + circleIntersectPoint.y);
+            
+            //BEZIER LINE
+            
+            bezierControlPoint = [self getBezierControlPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
             
             
-                        
-            arrowStartX1 = arrowEdgeStartPoint.x - (kARROW_DISTANCE_FROM_EDGE / (sqrt(1+pow(perpendicularSlope, 2.0))));
-            arrowStartPoint1 = CGPointMake(arrowStartX1, (perpendicularSlope * (arrowStartX1 - arrowEdgeStartPoint.x)) + arrowEdgeStartPoint.y);
-            
-            arrowStartX2 = arrowEdgeStartPoint.x + (kARROW_DISTANCE_FROM_EDGE / (sqrt(1+pow(perpendicularSlope, 2.0))));
-            arrowStartPoint2 = CGPointMake(arrowStartX2, (perpendicularSlope * (arrowStartX2 - arrowEdgeStartPoint.x)) + arrowEdgeStartPoint.y);
+            CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
+            CGContextAddQuadCurveToPoint(context, bezierControlPoint.x, bezierControlPoint.y, destNodeCenter.x, destNodeCenter.y);
             
             
-            CGContextMoveToPoint(context, arrowStartPoint1.x, arrowStartPoint1.y);
-            CGContextAddLineToPoint(context, circleIntersectPoint.x, circleIntersectPoint.y);
-            CGContextMoveToPoint(context, arrowStartPoint2.x, arrowStartPoint2.y);
-            CGContextAddLineToPoint(context, circleIntersectPoint.x, circleIntersectPoint.y);
-           
-//                CGFloat distance = sqrt(pow(destNodeCenter.x - startNodeCenter.x, 2) + pow(destNodeCenter.y - startNodeCenter.y, 2));                
-//                CGPoint midpoint = CGPointMake((startNodeCenter.x + destNodeCenter.x)/2, (startNodeCenter.y + destNodeCenter.y)/2);
-//                CGFloat tangentPerpYIntercept = (perpSlope * -midpoint.x) + midpoint.y;
-//                
-//                CGFloat tangentLineEndX = midpoint.x - (40 / (sqrt(1+pow(perpSlope, 2.0))));
-//                CGPoint tangentLineEndPoint = CGPointMake(tangentLineEndX, (perpSlope * tangentLineEndX) + tangentPerpYIntercept);
-//                
-//                CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
-//                CGContextAddQuadCurveToPoint(context, tangentLineEndPoint.x, tangentLineEndPoint.y, destNodeCenter.x, destNodeCenter.y);
-            
-            
-//                CGFloat opposite = startNodeCenter.y - destNodeCenter.y;
-//                CGFloat hypotenuse = distance;
-//                CGFloat angle = asinf(opposite/hypotenuse) * 180 / M_PI;
-//                if (angle < 0)
-//                    angle *= -1;
-//                
-//                if (startNodeCenter.x > destNodeCenter.x) {
-//                    if (destNodeCenter.y < startNodeCenter.y)
-//                        angle += 90 + (90 - angle);
-//                    else
-//                        angle += 180 + (180 - angle);
-//                }
-//                else if (startNodeCenter.y < destNodeCenter.y)
-//                    angle += 270 + (270 - angle);
-//                
-//                NSLog(@"angle: %f", angle);
-//                
-//                
-//                CGFloat sinOfAngle = sinf(angle);
-//                CGFloat cosOfAngle = cosf(angle);
-//                
-//                CGFloat rotatedX = (destNodeCenter.x * cosOfAngle) - (destNodeCenter.y * sinOfAngle);
-//                CGFloat rotatedY = (destNodeCenter.x * sinOfAngle) + (destNodeCenter.y * cosOfAngle);
-//                
-//                CGPoint rotatedPoint = CGPointMake(rotatedX, rotatedY);
-//
-//                //NSLog(@"%@", NSStringFromCGPoint(rotatedPoint));
-//                //CGContextMoveToPoint(context, ￼, ￼)
-//                
-//                //CGContextAddArcToPoint(context, tangentLineEndPoint.x, tangentLineEndPoint.y, destNodeCenter.x, destNodeCenter.y, 100);
+            bezierCenterPoint = CGPointMake(0.25 * startNodeCenter.x + 0.5 * bezierControlPoint.x + 0.25 * destNodeCenter.x,
+                                            0.25 * startNodeCenter.y + 0.5 * bezierControlPoint.y + 0.25 * destNodeCenter.y);
+            bezierIntersectPoint = [self estimateBezierIntersectWithStartPoint:startNodeCenter endPoint:destNodeCenter controlPoint:bezierControlPoint];
+            bezierEstimationSlope = (bezierCenterPoint.y - bezierIntersectPoint.y) / (bezierCenterPoint.x - bezierIntersectPoint.x);
+            arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:bezierIntersectPoint endPoint:destNodeCenter slope:bezierEstimationSlope];
+            [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:bezierIntersectPoint];
         }
-        
-        
     }
     CGContextStrokePath(context);
+}
+
+- (CGPoint)getNodeIntersectPointWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
+    CGFloat slope = (endPoint.y - startPoint.y) / (endPoint.x - startPoint.x);
+    CGFloat nodeIntersectX;
+    
+    if (startPoint.x < endPoint.x)
+        nodeIntersectX = endPoint.x - (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
+    else
+        nodeIntersectX = endPoint.x + (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
+    return CGPointMake(nodeIntersectX, (slope * (nodeIntersectX - endPoint.x)) + endPoint.y);
+}
+
+- (CGPoint)getBezierControlPointWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint {
+    CGPoint midpoint = CGPointMake((startPoint.x + endPoint.x)/2, (startPoint.y + endPoint.y)/2);
+    CGFloat slope = (endPoint.y - startPoint.y) / (endPoint.x - startPoint.x);
+    CGFloat perpSlope;
+    CGFloat bezierCurveXOffset;
+    
+    [self prepareSlope:&slope andPerpSlope:&perpSlope];
+    
+    if (startPoint.y < endPoint.y)
+        bezierCurveXOffset = midpoint.x + (60 / (sqrt(1+pow(perpSlope, 2.0))));
+    else
+        bezierCurveXOffset = midpoint.x - (60 / (sqrt(1+pow(perpSlope, 2.0))));
+    return CGPointMake(bezierCurveXOffset, (perpSlope * (bezierCurveXOffset - midpoint.x)) + midpoint.y);
+}
+
+- (void)addArrowEdgesToContext:(CGContextRef)context withStartPoints:(PointPair*)pointPair toEndPoint:(CGPoint)endPoint {
+    CGContextMoveToPoint(context, pointPair.point1.x, pointPair.point1.y);
+    CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
+    CGContextMoveToPoint(context, pointPair.point2.x, pointPair.point2.y);
+    CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
+}
+
+
+- (PointPair*)getArrowEdgeStartPointsWithIntersectPoint:(CGPoint)intersectPoint endPoint:(CGPoint)endPoint slope:(CGFloat)slope
+{
+    CGFloat perpSlope;
+    CGFloat perpLineXIntersect;
+    CGPoint perpLineIntersectPoint;
+    
+    CGFloat arrowStartX1;
+    CGFloat arrowStartX2;
+    PointPair *pointPair = [[PointPair alloc] init];
+    
+    [self prepareSlope:&slope andPerpSlope:&perpSlope];
+    
+    //step back from the intersect to start arrow
+    if (intersectPoint.x < endPoint.x)
+        perpLineXIntersect = intersectPoint.x - (kARROW_DISTANCE_FROM_NODE / (sqrt(1+pow(slope, 2.0))));
+    else
+        perpLineXIntersect = intersectPoint.x + (kARROW_DISTANCE_FROM_NODE / (sqrt(1+pow(slope, 2.0))));
+    perpLineIntersectPoint = CGPointMake(perpLineXIntersect, (slope * (perpLineXIntersect - intersectPoint.x)) + intersectPoint.y);
+    
+    //move up and down the perpendicular line
+    arrowStartX1 = perpLineIntersectPoint.x - (kARROW_DISTANCE_FROM_EDGE / (sqrt(1+pow(perpSlope, 2.0))));
+    pointPair.point1 = CGPointMake(arrowStartX1, (perpSlope * (arrowStartX1 - perpLineIntersectPoint.x)) + perpLineIntersectPoint.y);
+    
+    arrowStartX2 = perpLineIntersectPoint.x + (kARROW_DISTANCE_FROM_EDGE / (sqrt(1+pow(perpSlope, 2.0))));
+    pointPair.point2 = CGPointMake(arrowStartX2, (perpSlope * (arrowStartX2 - perpLineIntersectPoint.x)) + perpLineIntersectPoint.y);
+    
+    return pointPair;
+}
+
+
+- (void)prepareSlope:(CGFloat*)slope andPerpSlope:(CGFloat*)perpSlope {
+    //need to avoid vertical and horizontal lines
+    if (*slope == -INFINITY)
+        *slope = 200;
+    else if (*slope == INFINITY)
+        *slope = -200;
+    
+    if (*slope == 0)
+        *perpSlope = 200;
+    else
+        *perpSlope = -1 / *slope;
+}
+
+- (CGPoint)estimateBezierIntersectWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint {
+
+    CGPoint intersectPoint;
+    
+    CGFloat t = 0.5;
+    CGFloat lowerLimit = 0;
+    CGFloat upperLimit = 1;
+    CGFloat distanceFromIntersectToEnd;
+    for (NSUInteger i = 0; i < 10; i++)
+    {
+        //Reduced Quadratic Bezier Curve formula : B(t) = (1-t)^2P0 + 2(1-t)t(P1) + t^2P2 , T->[0,1]
+        //Distance formula: d = srqt((x2-x1)^2 + (y2-y1)^2)
+        
+        intersectPoint = CGPointMake(pow((1-t), 2)*startPoint.x + 2*(1-t) * t * controlPoint.x + pow(t, 2.0) * endPoint.x,
+                                     pow((1-t), 2)*startPoint.y + 2*(1-t) * t * controlPoint.y + pow(t, 2.0) * endPoint.y);
+        distanceFromIntersectToEnd = sqrtf(powf(intersectPoint.x - endPoint.x, 2) + powf(intersectPoint.y - endPoint.y, 2));
+        
+        if (distanceFromIntersectToEnd == kNODE_RADIUS) //on edge
+            break;
+        
+        else if (distanceFromIntersectToEnd > kNODE_RADIUS)
+        {
+            //outside circle
+            lowerLimit = t;
+            t += (upperLimit-lowerLimit)/2;
+        }
+        else
+        {
+            //inside circle
+            upperLimit = t;
+            t -= (upperLimit-lowerLimit)/2;
+        }
+    }
+    return intersectPoint;
 }
 
 
