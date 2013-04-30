@@ -11,6 +11,39 @@
 		522058131724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058111724C262004EE526 /* GMEdgeOptionsViewController.m */; };
 		522058161724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */; };
 		522058171724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */; };
+		524464BC17308A3600E0E5FF /* CGPointAdditions.c in Sources */ = {isa = PBXBuildFile; fileRef = 524464A417308A3600E0E5FF /* CGPointAdditions.c */; };
+		524464BD17308A3600E0E5FF /* CGPointAdditions.c in Sources */ = {isa = PBXBuildFile; fileRef = 524464A417308A3600E0E5FF /* CGPointAdditions.c */; };
+		524464BE17308A3600E0E5FF /* BackFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464A717308A3600E0E5FF /* BackFragmentShader.glsl */; };
+		524464BF17308A3600E0E5FF /* BackFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464A717308A3600E0E5FF /* BackFragmentShader.glsl */; };
+		524464C017308A3600E0E5FF /* BackPageGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 524464A817308A3600E0E5FF /* BackPageGradient.png */; };
+		524464C117308A3600E0E5FF /* BackPageGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 524464A817308A3600E0E5FF /* BackPageGradient.png */; };
+		524464C217308A3600E0E5FF /* BackVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464A917308A3600E0E5FF /* BackVertexShader.glsl */; };
+		524464C317308A3600E0E5FF /* BackVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464A917308A3600E0E5FF /* BackVertexShader.glsl */; };
+		524464C417308A3600E0E5FF /* FrontFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AA17308A3600E0E5FF /* FrontFragmentShader.glsl */; };
+		524464C517308A3600E0E5FF /* FrontFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AA17308A3600E0E5FF /* FrontFragmentShader.glsl */; };
+		524464C617308A3600E0E5FF /* FrontVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AB17308A3600E0E5FF /* FrontVertexShader.glsl */; };
+		524464C717308A3600E0E5FF /* FrontVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AB17308A3600E0E5FF /* FrontVertexShader.glsl */; };
+		524464C817308A3600E0E5FF /* NextPageFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AC17308A3600E0E5FF /* NextPageFragmentShader.glsl */; };
+		524464C917308A3600E0E5FF /* NextPageFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AC17308A3600E0E5FF /* NextPageFragmentShader.glsl */; };
+		524464CA17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AD17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl */; };
+		524464CB17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AD17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl */; };
+		524464CC17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AE17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl */; };
+		524464CD17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AE17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl */; };
+		524464CE17308A3600E0E5FF /* NextPageVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AF17308A3600E0E5FF /* NextPageVertexShader.glsl */; };
+		524464CF17308A3600E0E5FF /* NextPageVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 524464AF17308A3600E0E5FF /* NextPageVertexShader.glsl */; };
+		524464D017308A3600E0E5FF /* XBAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B117308A3600E0E5FF /* XBAnimation.m */; };
+		524464D117308A3600E0E5FF /* XBAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B117308A3600E0E5FF /* XBAnimation.m */; };
+		524464D217308A3600E0E5FF /* XBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B317308A3600E0E5FF /* XBAnimationManager.m */; };
+		524464D317308A3600E0E5FF /* XBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B317308A3600E0E5FF /* XBAnimationManager.m */; };
+		524464D417308A3600E0E5FF /* XBCurlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B517308A3600E0E5FF /* XBCurlView.m */; };
+		524464D517308A3600E0E5FF /* XBCurlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B517308A3600E0E5FF /* XBCurlView.m */; };
+		524464D617308A3600E0E5FF /* XBPageCurlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B717308A3600E0E5FF /* XBPageCurlView.m */; };
+		524464D717308A3600E0E5FF /* XBPageCurlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B717308A3600E0E5FF /* XBPageCurlView.m */; };
+		524464D817308A3600E0E5FF /* XBPageDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B917308A3600E0E5FF /* XBPageDragView.m */; };
+		524464D917308A3600E0E5FF /* XBPageDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464B917308A3600E0E5FF /* XBPageDragView.m */; };
+		524464DA17308A3600E0E5FF /* XBSnappingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464BB17308A3600E0E5FF /* XBSnappingPoint.m */; };
+		524464DB17308A3600E0E5FF /* XBSnappingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464BB17308A3600E0E5FF /* XBSnappingPoint.m */; };
+		524464DD17308C6500E0E5FF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524464DC17308C6500E0E5FF /* OpenGLES.framework */; };
 		52B3B8F3171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F4171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F5171F78A200B09420 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8ED171F78A200B09420 /* WEPopoverContainerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -93,6 +126,30 @@
 		522058111724C262004EE526 /* GMEdgeOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMEdgeOptionsViewController.m; path = "Classes/Edge Options View Controller/GMEdgeOptionsViewController.m"; sourceTree = "<group>"; };
 		522058141724C4C1004EE526 /* GMNodeOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeOptionsViewController.h; path = "Classes/Node Options View Controller/GMNodeOptionsViewController.h"; sourceTree = "<group>"; };
 		522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMNodeOptionsViewController.m; path = "Classes/Node Options View Controller/GMNodeOptionsViewController.m"; sourceTree = "<group>"; };
+		524464A417308A3600E0E5FF /* CGPointAdditions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CGPointAdditions.c; sourceTree = "<group>"; };
+		524464A517308A3600E0E5FF /* CGPointAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointAdditions.h; sourceTree = "<group>"; };
+		524464A717308A3600E0E5FF /* BackFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackFragmentShader.glsl; sourceTree = "<group>"; };
+		524464A817308A3600E0E5FF /* BackPageGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackPageGradient.png; sourceTree = "<group>"; };
+		524464A917308A3600E0E5FF /* BackVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackVertexShader.glsl; sourceTree = "<group>"; };
+		524464AA17308A3600E0E5FF /* FrontFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FrontFragmentShader.glsl; sourceTree = "<group>"; };
+		524464AB17308A3600E0E5FF /* FrontVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FrontVertexShader.glsl; sourceTree = "<group>"; };
+		524464AC17308A3600E0E5FF /* NextPageFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NextPageFragmentShader.glsl; sourceTree = "<group>"; };
+		524464AD17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NextPageNoTextureFragmentShader.glsl; sourceTree = "<group>"; };
+		524464AE17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NextPageNoTextureVertexShader.glsl; sourceTree = "<group>"; };
+		524464AF17308A3600E0E5FF /* NextPageVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NextPageVertexShader.glsl; sourceTree = "<group>"; };
+		524464B017308A3600E0E5FF /* XBAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAnimation.h; sourceTree = "<group>"; };
+		524464B117308A3600E0E5FF /* XBAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAnimation.m; sourceTree = "<group>"; };
+		524464B217308A3600E0E5FF /* XBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBAnimationManager.h; sourceTree = "<group>"; };
+		524464B317308A3600E0E5FF /* XBAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBAnimationManager.m; sourceTree = "<group>"; };
+		524464B417308A3600E0E5FF /* XBCurlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBCurlView.h; sourceTree = "<group>"; };
+		524464B517308A3600E0E5FF /* XBCurlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBCurlView.m; sourceTree = "<group>"; };
+		524464B617308A3600E0E5FF /* XBPageCurlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBPageCurlView.h; sourceTree = "<group>"; };
+		524464B717308A3600E0E5FF /* XBPageCurlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBPageCurlView.m; sourceTree = "<group>"; };
+		524464B817308A3600E0E5FF /* XBPageDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBPageDragView.h; sourceTree = "<group>"; };
+		524464B917308A3600E0E5FF /* XBPageDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBPageDragView.m; sourceTree = "<group>"; };
+		524464BA17308A3600E0E5FF /* XBSnappingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBSnappingPoint.h; sourceTree = "<group>"; };
+		524464BB17308A3600E0E5FF /* XBSnappingPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBSnappingPoint.m; sourceTree = "<group>"; };
+		524464DC17308C6500E0E5FF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeViewSelectionDelegate.h; path = Classes/Models/GMNodeViewSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeSelectionDelegate.h; path = Classes/Models/GMEdgeSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8EA171F78A200B09420 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
@@ -156,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524464DD17308C6500E0E5FF /* OpenGLES.framework in Frameworks */,
 				52B3B931172494DF00B09420 /* QuartzCore.framework in Frameworks */,
 				52EE9CA216F13FEC00284359 /* UIKit.framework in Frameworks */,
 				52EE9CA416F13FEC00284359 /* Foundation.framework in Frameworks */,
@@ -203,6 +261,45 @@
 				52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */,
 			);
 			name = Node;
+			sourceTree = "<group>";
+		};
+		524464A317308A3600E0E5FF /* XBPageCurl */ = {
+			isa = PBXGroup;
+			children = (
+				524464A417308A3600E0E5FF /* CGPointAdditions.c */,
+				524464A517308A3600E0E5FF /* CGPointAdditions.h */,
+				524464A617308A3600E0E5FF /* Resources */,
+				524464B017308A3600E0E5FF /* XBAnimation.h */,
+				524464B117308A3600E0E5FF /* XBAnimation.m */,
+				524464B217308A3600E0E5FF /* XBAnimationManager.h */,
+				524464B317308A3600E0E5FF /* XBAnimationManager.m */,
+				524464B417308A3600E0E5FF /* XBCurlView.h */,
+				524464B517308A3600E0E5FF /* XBCurlView.m */,
+				524464B617308A3600E0E5FF /* XBPageCurlView.h */,
+				524464B717308A3600E0E5FF /* XBPageCurlView.m */,
+				524464B817308A3600E0E5FF /* XBPageDragView.h */,
+				524464B917308A3600E0E5FF /* XBPageDragView.m */,
+				524464BA17308A3600E0E5FF /* XBSnappingPoint.h */,
+				524464BB17308A3600E0E5FF /* XBSnappingPoint.m */,
+			);
+			name = XBPageCurl;
+			path = GraphMaster/Classes/XBPageCurl;
+			sourceTree = "<group>";
+		};
+		524464A617308A3600E0E5FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				524464A717308A3600E0E5FF /* BackFragmentShader.glsl */,
+				524464A817308A3600E0E5FF /* BackPageGradient.png */,
+				524464A917308A3600E0E5FF /* BackVertexShader.glsl */,
+				524464AA17308A3600E0E5FF /* FrontFragmentShader.glsl */,
+				524464AB17308A3600E0E5FF /* FrontVertexShader.glsl */,
+				524464AC17308A3600E0E5FF /* NextPageFragmentShader.glsl */,
+				524464AD17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl */,
+				524464AE17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl */,
+				524464AF17308A3600E0E5FF /* NextPageVertexShader.glsl */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		52B3B8E9171F78A200B09420 /* WEPopover */ = {
@@ -265,6 +362,7 @@
 		52EE9C9216F13FEC00284359 = {
 			isa = PBXGroup;
 			children = (
+				524464A317308A3600E0E5FF /* XBPageCurl */,
 				52B3B8E9171F78A200B09420 /* WEPopover */,
 				52EE9CA716F13FEC00284359 /* GraphMaster */,
 				52EE9CCE16F13FED00284359 /* GraphMasterTests */,
@@ -285,6 +383,7 @@
 		52EE9CA016F13FEC00284359 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				524464DC17308C6500E0E5FF /* OpenGLES.framework */,
 				52B3B930172494DF00B09420 /* QuartzCore.framework */,
 				52EE9CA116F13FEC00284359 /* UIKit.framework */,
 				52EE9CA316F13FEC00284359 /* Foundation.framework */,
@@ -473,6 +572,15 @@
 				52B3B924171F78D800B09420 /* popoverBg.png in Resources */,
 				52B3B926171F78D800B09420 /* popoverBg@2x.png in Resources */,
 				52B3B928171F78D800B09420 /* popoverBgSimple.png in Resources */,
+				524464BE17308A3600E0E5FF /* BackFragmentShader.glsl in Resources */,
+				524464C017308A3600E0E5FF /* BackPageGradient.png in Resources */,
+				524464C217308A3600E0E5FF /* BackVertexShader.glsl in Resources */,
+				524464C417308A3600E0E5FF /* FrontFragmentShader.glsl in Resources */,
+				524464C617308A3600E0E5FF /* FrontVertexShader.glsl in Resources */,
+				524464C817308A3600E0E5FF /* NextPageFragmentShader.glsl in Resources */,
+				524464CA17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl in Resources */,
+				524464CC17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl in Resources */,
+				524464CE17308A3600E0E5FF /* NextPageVertexShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +604,15 @@
 				52B3B925171F78D800B09420 /* popoverBg.png in Resources */,
 				52B3B927171F78D800B09420 /* popoverBg@2x.png in Resources */,
 				52B3B929171F78D800B09420 /* popoverBgSimple.png in Resources */,
+				524464BF17308A3600E0E5FF /* BackFragmentShader.glsl in Resources */,
+				524464C117308A3600E0E5FF /* BackPageGradient.png in Resources */,
+				524464C317308A3600E0E5FF /* BackVertexShader.glsl in Resources */,
+				524464C517308A3600E0E5FF /* FrontFragmentShader.glsl in Resources */,
+				524464C717308A3600E0E5FF /* FrontVertexShader.glsl in Resources */,
+				524464C917308A3600E0E5FF /* NextPageFragmentShader.glsl in Resources */,
+				524464CB17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl in Resources */,
+				524464CD17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl in Resources */,
+				524464CF17308A3600E0E5FF /* NextPageVertexShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +651,13 @@
 				52B3B8F9171F78A200B09420 /* WETouchableView.m in Sources */,
 				522058121724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */,
 				522058161724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */,
+				524464BC17308A3600E0E5FF /* CGPointAdditions.c in Sources */,
+				524464D017308A3600E0E5FF /* XBAnimation.m in Sources */,
+				524464D217308A3600E0E5FF /* XBAnimationManager.m in Sources */,
+				524464D417308A3600E0E5FF /* XBCurlView.m in Sources */,
+				524464D617308A3600E0E5FF /* XBPageCurlView.m in Sources */,
+				524464D817308A3600E0E5FF /* XBPageDragView.m in Sources */,
+				524464DA17308A3600E0E5FF /* XBSnappingPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +677,13 @@
 				52B3B8FA171F78A200B09420 /* WETouchableView.m in Sources */,
 				522058131724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */,
 				522058171724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */,
+				524464BD17308A3600E0E5FF /* CGPointAdditions.c in Sources */,
+				524464D117308A3600E0E5FF /* XBAnimation.m in Sources */,
+				524464D317308A3600E0E5FF /* XBAnimationManager.m in Sources */,
+				524464D517308A3600E0E5FF /* XBCurlView.m in Sources */,
+				524464D717308A3600E0E5FF /* XBPageCurlView.m in Sources */,
+				524464D917308A3600E0E5FF /* XBPageDragView.m in Sources */,
+				524464DB17308A3600E0E5FF /* XBSnappingPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,10 +788,14 @@
 		52EE9CDA16F13FED00284359 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: John Newman (62QG3T7HY7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Newman (62QG3T7HY7)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
 				INFOPLIST_FILE = "GraphMaster/GraphMaster-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "37C9FFB3-327A-4213-A946-2AFED136434C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37C9FFB3-327A-4213-A946-2AFED136434C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -668,6 +803,7 @@
 		52EE9CDB16F13FED00284359 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
 				INFOPLIST_FILE = "GraphMaster/GraphMaster-Info.plist";

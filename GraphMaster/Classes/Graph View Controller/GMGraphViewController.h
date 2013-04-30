@@ -10,6 +10,7 @@
 #import "GMNodeViewSelectionDelegate.h"
 #import "GMEdgeSelectionDelegate.h"
 #import "GMEdgeOptionsDelegate.h"
+#import "XBPageDragView.h"
 
 @class GMGraphCanvass;
 @class WEPopoverController;
@@ -26,5 +27,9 @@ DrawType currentDrawType;
     WEPopoverController *popoverController;
     GMEdge *selectedEdge;
 }
+
+@property (nonatomic, weak, readonly) IBOutlet GMGraphCanvass *graphCanvass;
+@property (nonatomic, weak, readonly) IBOutlet UISegmentedControl *drawTypeSegControl;
+@property (nonatomic, weak, readonly) IBOutlet XBPageDragView *pageDragView;
 
 @end

@@ -26,9 +26,15 @@
 
 @property (nonatomic, weak) IBOutlet GMGraphCanvass *graphCanvass;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *drawTypeSegControl;
+@property (nonatomic, weak) IBOutlet XBPageDragView *pageDragView;
 @end
 
 @implementation GMGraphViewController
+
+@synthesize graphCanvass = _graphCanvass;
+@synthesize drawTypeSegControl = _drawTypeSegControl;
+@synthesize pageDragView = _pageDragView;
+
 
 - (void)viewDidLoad
 {
@@ -37,6 +43,9 @@
     
     nodes = [NSMutableArray arrayWithCapacity:10];
     _graphCanvass.nodes = nodes;
+    
+    XBSnappingPoint *point = [[XBSnappingPoint alloc] initWithPosition:CGPointMake(_pageDragView.viewToCurl.frame.size.width*0.1, _pageDragView.viewToCurl.frame.size.height*0.1) angle:7*M_PI/8 radius:80 weight:0.5];
+    [_pageDragView.pageCurlView addSnappingPoint:point];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +59,9 @@
 #pragma mark Draw Style Action
 
 - (IBAction)drawStyleChanged {
+    if (_pageDragView.pageIsCurled) {
+        [_pageDragView uncurlPageAnimated:YES completion:nil];
+    }
     NSUInteger selectedDrawType = _drawTypeSegControl.selectedSegmentIndex;
     currentDrawType = selectedDrawType;
 }
