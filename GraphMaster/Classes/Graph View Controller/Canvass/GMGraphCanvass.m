@@ -125,7 +125,11 @@
     
     [self prepareSlope:&slope andPerpSlope:&perpSlope];
     
-    if (startPoint.y < endPoint.y)
+    //special case for if the start and end are on the same y-plane.  Need to flip the control
+    //  point for one edge so that they both don't use the same control point.
+    if (startPoint.y == endPoint.y && startPoint.x > endPoint.x)
+        bezierCurveXOffset = midpoint.x + (kBEZIER_PATH_CONTROL_OFFSET / (sqrt(1+pow(perpSlope, 2.0))));
+    else if (startPoint.y < endPoint.y)
         bezierCurveXOffset = midpoint.x + (kBEZIER_PATH_CONTROL_OFFSET / (sqrt(1+pow(perpSlope, 2.0))));
     else
         bezierCurveXOffset = midpoint.x - (kBEZIER_PATH_CONTROL_OFFSET / (sqrt(1+pow(perpSlope, 2.0))));
