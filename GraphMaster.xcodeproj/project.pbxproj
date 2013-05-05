@@ -44,6 +44,10 @@
 		524464DA17308A3600E0E5FF /* XBSnappingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464BB17308A3600E0E5FF /* XBSnappingPoint.m */; };
 		524464DB17308A3600E0E5FF /* XBSnappingPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 524464BB17308A3600E0E5FF /* XBSnappingPoint.m */; };
 		524464DD17308C6500E0E5FF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524464DC17308C6500E0E5FF /* OpenGLES.framework */; };
+		524464DF1730925300E0E5FF /* page_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 524464DE1730925300E0E5FF /* page_curl.png */; };
+		524464E01730925300E0E5FF /* page_curl.png in Resources */ = {isa = PBXBuildFile; fileRef = 524464DE1730925300E0E5FF /* page_curl.png */; };
+		52973DE117309B9F00B5A51D /* GMGraphOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52973DE017309B9F00B5A51D /* GMGraphOptionsView.m */; };
+		52973DE217309B9F00B5A51D /* GMGraphOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52973DE017309B9F00B5A51D /* GMGraphOptionsView.m */; };
 		52B3B8F3171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F4171F78A200B09420 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8EB171F78A200B09420 /* UIBarButtonItem+WEPopover.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		52B3B8F5171F78A200B09420 /* WEPopoverContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B3B8ED171F78A200B09420 /* WEPopoverContainerView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -150,6 +154,9 @@
 		524464BA17308A3600E0E5FF /* XBSnappingPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBSnappingPoint.h; sourceTree = "<group>"; };
 		524464BB17308A3600E0E5FF /* XBSnappingPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBSnappingPoint.m; sourceTree = "<group>"; };
 		524464DC17308C6500E0E5FF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		524464DE1730925300E0E5FF /* page_curl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page_curl.png; path = GraphMaster/page_curl.png; sourceTree = SOURCE_ROOT; };
+		52973DDF17309B9F00B5A51D /* GMGraphOptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMGraphOptionsView.h; path = "Classes/Options View/GMGraphOptionsView.h"; sourceTree = "<group>"; };
+		52973DE017309B9F00B5A51D /* GMGraphOptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMGraphOptionsView.m; path = "Classes/Options View/GMGraphOptionsView.m"; sourceTree = "<group>"; };
 		52B3B8E3171F70C900B09420 /* GMNodeViewSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMNodeViewSelectionDelegate.h; path = Classes/Models/GMNodeViewSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8E4171F712F00B09420 /* GMEdgeSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeSelectionDelegate.h; path = Classes/Models/GMEdgeSelectionDelegate.h; sourceTree = "<group>"; };
 		52B3B8EA171F78A200B09420 /* UIBarButtonItem+WEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+WEPopover.h"; sourceTree = "<group>"; };
@@ -302,6 +309,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		52973DDE17309B2700B5A51D /* Options View */ = {
+			isa = PBXGroup;
+			children = (
+				52973DDF17309B9F00B5A51D /* GMGraphOptionsView.h */,
+				52973DE017309B9F00B5A51D /* GMGraphOptionsView.m */,
+			);
+			name = "Options View";
+			sourceTree = "<group>";
+		};
 		52B3B8E9171F78A200B09420 /* WEPopover */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +338,7 @@
 		52B3B8FB171F78D800B09420 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				524464DE1730925300E0E5FF /* page_curl.png */,
 				52B3B8FC171F78D800B09420 /* WEPopover */,
 			);
 			path = Resources;
@@ -399,6 +416,7 @@
 				52EE9CE916F1418F00284359 /* Models */,
 				52EE9CE016F1413300284359 /* Graph View Controller */,
 				52EE9CF416F1437400284359 /* Canvass View */,
+				52973DDE17309B2700B5A51D /* Options View */,
 				5220580B1724C1BA004EE526 /* Node Options View Controller */,
 				52B3B92A171F7AF200B09420 /* Edge Options View Controller */,
 				52EE9CDF16F1412D00284359 /* App Delegate */,
@@ -581,6 +599,7 @@
 				524464CA17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl in Resources */,
 				524464CC17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl in Resources */,
 				524464CE17308A3600E0E5FF /* NextPageVertexShader.glsl in Resources */,
+				524464DF1730925300E0E5FF /* page_curl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +632,7 @@
 				524464CB17308A3600E0E5FF /* NextPageNoTextureFragmentShader.glsl in Resources */,
 				524464CD17308A3600E0E5FF /* NextPageNoTextureVertexShader.glsl in Resources */,
 				524464CF17308A3600E0E5FF /* NextPageVertexShader.glsl in Resources */,
+				524464E01730925300E0E5FF /* page_curl.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +678,7 @@
 				524464D617308A3600E0E5FF /* XBPageCurlView.m in Sources */,
 				524464D817308A3600E0E5FF /* XBPageDragView.m in Sources */,
 				524464DA17308A3600E0E5FF /* XBSnappingPoint.m in Sources */,
+				52973DE117309B9F00B5A51D /* GMGraphOptionsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +705,7 @@
 				524464D717308A3600E0E5FF /* XBPageCurlView.m in Sources */,
 				524464D917308A3600E0E5FF /* XBPageDragView.m in Sources */,
 				524464DB17308A3600E0E5FF /* XBSnappingPoint.m in Sources */,
+				52973DE217309B9F00B5A51D /* GMGraphOptionsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

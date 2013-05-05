@@ -12,11 +12,15 @@
 #import "GMEdge.h"
 #import <QuartzCore/QuartzCore.h>
 #import "GMEdgeOptionsViewController.h"
+#import "GMNodeOptionsViewController.h"
 #import "WEPopoverController.h"
+#import "GMGraphOptionsView.h"
+#import "XBPageDragView.h"
 
 
 @interface GMGraphViewController ()
 
+- (IBAction)doneShowingOptionsView;
 - (IBAction)drawStyleChanged;
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer*)tapGestureRecognizer;
 - (void)addNewNodeAtPoint:(CGPoint)point;
@@ -25,6 +29,7 @@
 - (WEPopoverContainerViewProperties *)improvedContainerViewProperties;
 
 @property (nonatomic, weak) IBOutlet GMGraphCanvass *graphCanvass;
+@property (nonatomic, weak) IBOutlet GMGraphOptionsView *graphOptionsView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *drawTypeSegControl;
 @property (nonatomic, weak) IBOutlet XBPageDragView *pageDragView;
 @end
@@ -32,6 +37,7 @@
 @implementation GMGraphViewController
 
 @synthesize graphCanvass = _graphCanvass;
+@synthesize graphOptionsView = _graphOptionsView;
 @synthesize drawTypeSegControl = _drawTypeSegControl;
 @synthesize pageDragView = _pageDragView;
 
@@ -43,6 +49,8 @@
     
     nodes = [NSMutableArray arrayWithCapacity:10];
     _graphCanvass.nodes = nodes;
+    
+    _graphOptionsView.tableView.layer.cornerRadius = 10.0;
     
     XBSnappingPoint *point = [[XBSnappingPoint alloc] initWithPosition:CGPointMake(_pageDragView.viewToCurl.frame.size.width*0.1, _pageDragView.viewToCurl.frame.size.height*0.1) angle:7*M_PI/8 radius:80 weight:0.5];
     [_pageDragView.pageCurlView addSnappingPoint:point];
@@ -58,10 +66,11 @@
 #pragma mark -
 #pragma mark Draw Style Action
 
+- (IBAction)doneShowingOptionsView {
+    [_pageDragView uncurlPageAnimated:YES completion:nil];
+}
+
 - (IBAction)drawStyleChanged {
-    if (_pageDragView.pageIsCurled) {
-        [_pageDragView uncurlPageAnimated:YES completion:nil];
-    }
     NSUInteger selectedDrawType = _drawTypeSegControl.selectedSegmentIndex;
     currentDrawType = selectedDrawType;
 }
@@ -135,6 +144,16 @@
     [_graphCanvass setNeedsDisplay];
 }
 
+- (void)nodeViewNeedsOptionsDialog:(GMNodeView*)nodeView {
+    NSLog(@"node view needs option dialog: %d", nodeView.number);
+    
+    GMNodeOptionsViewController *nodeOptionsViewController = [[GMNodeOptionsViewController alloc] initWithNibName:nil bundle:nil];
+    popoverController = [[WEPopoverController alloc] initWithContentViewController:nodeOptionsViewController];
+    [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
+    [popoverController presentPopoverFromRect:nodeView.frame inView:_graphCanvass permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+}
+
 
 #pragma mark -
 #pragma mark GMEdgeSelectionDelegate
@@ -142,9 +161,9 @@
 - (void)edgeSelected:(GMEdge *)edge {
     selectedEdge = edge;
     
-    GMEdgeOptionsViewController *weightPickerViewController = [[GMEdgeOptionsViewController alloc] initWithNibName:nil bundle:nil];
-    weightPickerViewController.delegate = self;
-    popoverController = [[WEPopoverController alloc] initWithContentViewController:weightPickerViewController];
+    GMEdgeOptionsViewController *edgeOptionsViewController = [[GMEdgeOptionsViewController alloc] initWithNibName:nil bundle:nil];
+    edgeOptionsViewController.delegate = self;
+    popoverController = [[WEPopoverController alloc] initWithContentViewController:edgeOptionsViewController];
     [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
     [popoverController presentPopoverFromRect:edge.weightButton.frame inView:_graphCanvass permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     
@@ -188,6 +207,9 @@
 	props.rightArrowImageName = @"popoverArrowRight.png";
 	return props;
 }
+
+
+
 
 
 #pragma mark -

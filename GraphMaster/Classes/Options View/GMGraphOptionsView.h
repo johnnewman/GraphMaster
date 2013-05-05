@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GMGraphOptionsView : UIView
+@interface GMGraphOptionsView : UIView <UITableViewDelegate, UITableViewDataSource> {
+    NSArray *algorithms;
+    NSArray *algorithmTypes;
+}
+
+@property (nonatomic, weak, readonly) IBOutlet UITableView *tableView;
 
 @end

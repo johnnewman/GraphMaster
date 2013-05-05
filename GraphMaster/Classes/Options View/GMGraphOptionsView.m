@@ -7,8 +7,15 @@
 //
 
 #import "GMGraphOptionsView.h"
+#import <QuartzCore/QuartzCore.h>
+
+@interface GMGraphOptionsView ()
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@end
 
 @implementation GMGraphOptionsView
+
+@synthesize tableView = _tableView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,5 +34,36 @@
     // Drawing code
 }
 */
+
+- (void)awakeFromNib {
+    algorithmTypes = @[@"Shortest Path", @"Minimum Spanning Tree", @"Search"];
+    algorithms = @[@[@"Dijkstra's", @"Bellman-Ford"],@[@"Prim's", @"Kruskals"], @[@"Depth-First", @"Breadth-First"]];
+    [_tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return algorithmTypes.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[algorithms objectAtIndex:section] count];
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [algorithmTypes objectAtIndex:section];
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"algorithmCell";
+    UITableViewCell *tableViewCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (tableViewCell == nil) {
+        tableViewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    tableViewCell.textLabel.text = [[algorithms objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    return tableViewCell;
+}
 
 @end

@@ -10,9 +10,10 @@
 #import "GMNodeViewSelectionDelegate.h"
 #import "GMEdgeSelectionDelegate.h"
 #import "GMEdgeOptionsDelegate.h"
-#import "XBPageDragView.h"
 
 @class GMGraphCanvass;
+@class GMGraphOptionsView;
+@class XBPageDragView;
 @class WEPopoverController;
 
 typedef enum {
@@ -29,6 +30,7 @@ DrawType currentDrawType;
 }
 
 @property (nonatomic, weak, readonly) IBOutlet GMGraphCanvass *graphCanvass;
+@property (nonatomic, weak, readonly) IBOutlet GMGraphOptionsView *graphOptionsView;
 @property (nonatomic, weak, readonly) IBOutlet UISegmentedControl *drawTypeSegControl;
 @property (nonatomic, weak, readonly) IBOutlet XBPageDragView *pageDragView;
 
