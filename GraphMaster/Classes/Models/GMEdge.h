@@ -14,6 +14,7 @@
 @interface GMEdge : NSObject
 
 @property (nonatomic) NSInteger weight;
+@property (nonatomic, setter = setTraveled:) BOOL isTraveled;
 @property (nonatomic, weak) GMNodeView *startNode;
 @property (nonatomic, weak) GMNodeView *destNode;
 @property (nonatomic, strong, readonly) UIButton *weightButton;

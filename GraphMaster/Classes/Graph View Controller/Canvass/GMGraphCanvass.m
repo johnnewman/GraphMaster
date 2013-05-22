@@ -64,6 +64,11 @@
     for (GMNodeView *node in _nodes) {
         for (GMEdge *edge in node.outgoingEdges) {
             
+            if (edge.isTraveled) {
+                CGContextStrokePath(context);
+                CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+            }
+            
             startNodeFrame = edge.startNode.frame;
             startNodeCenter = CGPointMake(CGRectGetMidX(startNodeFrame), CGRectGetMidY(startNodeFrame));
             destNodeFrame = edge.destNode.frame;
@@ -97,6 +102,11 @@
                 nodeIntersectPoint = [self getNodeIntersectPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
                 arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:nodeIntersectPoint endPoint:destNodeCenter slope:(destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x)];
                 [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:nodeIntersectPoint];
+            }
+            
+            if (edge.isTraveled) {
+                CGContextStrokePath(context);
+                CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
             }
         }
     }

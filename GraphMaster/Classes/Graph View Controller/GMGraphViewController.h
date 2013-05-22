@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMGraphOptionsViewsSelectionDelegate.h"
 #import "GMNodeViewSelectionDelegate.h"
 #import "GMEdgeSelectionDelegate.h"
 #import "GMEdgeOptionsDelegate.h"
@@ -23,7 +24,7 @@ typedef enum {
 
 DrawType currentDrawType;
 
-@interface GMGraphViewController : UIViewController <GMNodeViewSelectionDelegate, GMEdgeSelectionDelegate, GMEdgeOptionsDelegate> {
+@interface GMGraphViewController : UIViewController <GMGraphOptionsViewsSelectionDelegate, GMNodeViewSelectionDelegate, GMEdgeSelectionDelegate, GMEdgeOptionsDelegate> {
     NSMutableArray *nodes;
     WEPopoverController *popoverController;
     GMEdge *selectedEdge;

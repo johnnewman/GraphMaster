@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GMGraphOptionsViewsSelectionDelegate.h"
 
 @interface GMGraphOptionsView : UIView <UITableViewDelegate, UITableViewDataSource> {
     NSArray *algorithms;
@@ -14,5 +15,6 @@
 }
 
 @property (nonatomic, weak, readonly) IBOutlet UITableView *tableView;
+@property (nonatomic, weak)id<GMGraphOptionsViewsSelectionDelegate> selectionDelegate;
 
 @end

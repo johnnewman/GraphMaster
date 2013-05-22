@@ -18,6 +18,8 @@
 
 @property (nonatomic, weak) id<GMNodeViewSelectionDelegate>delegate;
 @property (nonatomic) NSUInteger number;
+@property (nonatomic) NSInteger distance;
+@property (nonatomic, weak) GMNodeView *previousNode;
 @property (nonatomic, strong, readonly) NSMutableArray *outgoingEdges;
 @property (nonatomic, strong, readonly) NSHashTable *outgoingNodes;
 

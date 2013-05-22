@@ -23,6 +23,7 @@
 - (IBAction)doneShowingOptionsView;
 - (IBAction)drawStyleChanged;
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer*)tapGestureRecognizer;
+- (IBAction)canvassLongPressGesture:(UILongPressGestureRecognizer*)longPressGestureRecognizer;
 - (void)addNewNodeAtPoint:(CGPoint)point;
 - (void)drawNewEdgeIfNeededForPoint:(CGPoint)point;
 - (GMNodeView*)nodeInPoint:(CGPoint)point;
@@ -51,6 +52,7 @@
     _graphCanvass.nodes = nodes;
     
     _graphOptionsView.tableView.layer.cornerRadius = 10.0;
+    _graphOptionsView.selectionDelegate = self;
     
     XBSnappingPoint *point = [[XBSnappingPoint alloc] initWithPosition:CGPointMake(_pageDragView.viewToCurl.frame.size.width*0.1, _pageDragView.viewToCurl.frame.size.height*0.1) angle:7*M_PI/8 radius:80 weight:0.5];
     [_pageDragView.pageCurlView addSnappingPoint:point];
@@ -60,6 +62,58 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)graphOptionsView:(GMGraphOptionsView *)optionsView didSelectAlgorithm:(AlgorithmType)type {
+    if (type == kDIJKSTRAS) {
+        GMNodeView *startNode = [nodes objectAtIndex:0];
+        
+        for (GMNodeView *node in nodes) {
+            node.distance = INT32_MAX;
+            node.previousNode = nil;
+        }
+        startNode.distance = 0;
+        
+        NSMutableArray *queue = [NSMutableArray arrayWithArray:nodes];
+        
+        NSComparisonResult (^distanceComparator)(id obj1, id obj2) = ^NSComparisonResult(id obj1, id obj2) {
+            NSInteger difference = ((GMNodeView*)obj1).distance - ((GMNodeView*)obj2).distance;
+            if (difference == 0)
+                difference = ((GMNodeView*)obj1).number - ((GMNodeView*)obj2).number;
+            if (difference > 0)
+                return NSOrderedDescending;
+            else
+                return NSOrderedAscending;
+        };
+        
+        [queue sortUsingComparator:distanceComparator];
+        GMNodeView *currentNode;
+        while (queue.count > 0) {
+            currentNode = [queue objectAtIndex:0];
+            [queue removeObjectAtIndex:0];
+            for (GMEdge *edge in currentNode.outgoingEdges) {
+                GMNodeView *otherNodeOnEdge = edge.destNode;
+                if (otherNodeOnEdge.distance > currentNode.distance + edge.weight) {
+                    otherNodeOnEdge.distance = currentNode.distance + edge.weight;
+                    otherNodeOnEdge.previousNode = currentNode;
+                    [queue sortUsingComparator:distanceComparator];
+                }
+            }
+        }
+        
+        //color the used edges
+        for (GMNodeView *node in nodes) {
+            if (node.previousNode != nil) {  //will be null on start node
+                for (GMEdge *edge in node.previousNode.outgoingEdges) {
+                    if (edge.destNode == node){
+                        edge.isTraveled = YES;
+                        break;
+                    }
+                }
+            }
+        }
+        [_graphCanvass setNeedsDisplay];
+    }
 }
 
 
@@ -79,6 +133,9 @@
 #pragma mark -
 #pragma mark New Node Methods
 
+- (IBAction)canvassLongPressGesture:(UILongPressGestureRecognizer*)longPressGestureRecognizer {
+    NSLog(@"canvass long press");
+}
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer {    
     if (currentDrawType == NODE_TYPE)
         [self addNewNodeAtPoint:[tapGestureRecognizer locationInView:_graphCanvass]];
