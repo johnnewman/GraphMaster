@@ -44,8 +44,9 @@
 							<object class="IBUITableView" id="938332957">
 								<reference key="NSNextResponder" ref="186376030"/>
 								<int key="NSvFlags">307</int>
-								<string key="NSFrame">{{329, 20}, {219, 209}}</string>
+								<string key="NSFrame">{{292, 35}, {256, 209}}</string>
 								<reference key="NSSuperview" ref="186376030"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="274165744"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -69,6 +70,7 @@
 								<int key="NSvFlags">265</int>
 								<string key="NSFrame">{{533, 266}, {35, 36}}</string>
 								<reference key="NSSuperview" ref="186376030"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="313753676"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -104,6 +106,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{169, 237}, {60, 44}}</string>
 								<reference key="NSSuperview" ref="186376030"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -126,6 +129,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{95, 237}, {60, 44}}</string>
 								<reference key="NSSuperview" ref="186376030"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="924063659"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -148,6 +152,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 237}, {62, 44}}</string>
 								<reference key="NSSuperview" ref="186376030"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="66565664"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -168,6 +173,7 @@
 						</array>
 						<string key="NSFrameSize">{568, 300}</string>
 						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="938332957"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -182,6 +188,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrameSize">{568, 300}</string>
 						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="209760681"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -198,6 +205,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{531, 264}, {37, 36}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -211,6 +219,7 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {568, 300}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="186376030"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -448,7 +457,97 @@
 			<nil key="sourceID"/>
 			<int key="maxID">170</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">GMGraphCanvass</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GMGraphCanvass.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GMGraphOptionsView</string>
+					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">tableView</string>
+						<string key="NS.object.0">UITableView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">tableView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">tableView</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GMGraphOptionsView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GMGraphViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="canvassTapGesture:">UITapGestureRecognizer</string>
+						<string key="doneShowingOptionsView">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="canvassTapGesture:">
+							<string key="name">canvassTapGesture:</string>
+							<string key="candidateClassName">UITapGestureRecognizer</string>
+						</object>
+						<object class="IBActionInfo" key="doneShowingOptionsView">
+							<string key="name">doneShowingOptionsView</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="graphCanvass">GMGraphCanvass</string>
+						<string key="graphOptionsView">GMGraphOptionsView</string>
+						<string key="pageDragView">XBPageDragView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="graphCanvass">
+							<string key="name">graphCanvass</string>
+							<string key="candidateClassName">GMGraphCanvass</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="graphOptionsView">
+							<string key="name">graphOptionsView</string>
+							<string key="candidateClassName">GMGraphOptionsView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pageDragView">
+							<string key="name">pageDragView</string>
+							<string key="candidateClassName">XBPageDragView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GMGraphViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">XBPageDragView</string>
+					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">viewToCurl</string>
+						<string key="NS.object.0">UIView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">viewToCurl</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">viewToCurl</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/XBPageDragView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
