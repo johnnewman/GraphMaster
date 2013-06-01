@@ -17,13 +17,6 @@
 @class XBPageDragView;
 @class WEPopoverController;
 
-typedef enum {
-    NODE_TYPE = 0,
-    EDGE_TYPE
-}DrawType;
-
-DrawType currentDrawType;
-
 @interface GMGraphViewController : UIViewController <GMGraphOptionsViewsSelectionDelegate, GMNodeViewSelectionDelegate, GMEdgeSelectionDelegate, GMEdgeOptionsDelegate> {
     NSMutableArray *nodes;
     WEPopoverController *popoverController;
@@ -32,7 +25,6 @@ DrawType currentDrawType;
 
 @property (nonatomic, weak, readonly) IBOutlet GMGraphCanvass *graphCanvass;
 @property (nonatomic, weak, readonly) IBOutlet GMGraphOptionsView *graphOptionsView;
-@property (nonatomic, weak, readonly) IBOutlet UISegmentedControl *drawTypeSegControl;
 @property (nonatomic, weak, readonly) IBOutlet XBPageDragView *pageDragView;
 
 @end

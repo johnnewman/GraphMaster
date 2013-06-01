@@ -10,11 +10,13 @@
 @class GMNodeView;
 
 @interface GMGraphCanvass : UIView {
-    CGPoint movePoint;
+    CGPoint edgeEndPoint;    
 }
 
-@property (nonatomic, weak)GMNodeView *nodeWithTouches;
+@property (nonatomic, weak, readonly)GMNodeView *nodeWithNewEdge;
 @property (nonatomic)BOOL isDrawingNewEdge;
 @property (nonatomic, weak)NSMutableArray *nodes;
+
+- (void)drawNewEdgeFromNode:(GMNodeView*)node toPoint:(CGPoint)edgePoint;
 
 @end

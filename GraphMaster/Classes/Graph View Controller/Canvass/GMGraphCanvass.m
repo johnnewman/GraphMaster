@@ -21,19 +21,12 @@
 @implementation GMGraphCanvass
 
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (currentDrawType == EDGE_TYPE && _nodeWithTouches != nil) {
-        UITouch *touch = [touches anyObject];
-        movePoint = [touch locationInView:self];
-        if (CGRectContainsPoint(self.bounds, movePoint)) {
-            _isDrawingNewEdge = YES;
-            [self setNeedsDisplay];
-        }
-    }
-    [super touchesMoved:touches withEvent:event];
+- (void)drawNewEdgeFromNode:(GMNodeView *)node toPoint:(CGPoint)edgePoint
+{
+    _nodeWithNewEdge = node;
+    edgeEndPoint = edgePoint;
+    [self setNeedsDisplay];
 }
-
-
 
 - (void)drawRect:(CGRect)rect
 {
@@ -54,9 +47,9 @@
     CGContextSetLineWidth(context, kEDGE_WIDTH);
     
     if (_isDrawingNewEdge) {
-        startNodeFrame = _nodeWithTouches.frame;
-        CGContextMoveToPoint(context, CGRectGetMidX(startNodeFrame), CGRectGetMidY(startNodeFrame));
-        CGContextAddLineToPoint(context, movePoint.x, movePoint.y);
+        CGPoint nodeCenter = _nodeWithNewEdge.center;
+        CGContextMoveToPoint(context, nodeCenter.x, nodeCenter.y);
+        CGContextAddLineToPoint(context, edgeEndPoint.x, edgeEndPoint.y);
         CGContextStrokePath(context);
     }    
     

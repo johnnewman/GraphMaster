@@ -12,6 +12,8 @@
 
 @interface GMNodeView ()
 
+- (void)moveNodeWithGesuture:(UIGestureRecognizer*)gestureRecognizer;
+
 @property (nonatomic, strong) UILabel *numberLabel;
 
 @end
@@ -38,21 +40,22 @@
     return self;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([_delegate respondsToSelector:@selector(nodeViewTouchesBegan:)])
-        [_delegate nodeViewTouchesBegan:self];
-    [super touchesBegan:touches withEvent:event];
-}
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (currentDrawType == NODE_TYPE) {
-        [self moveNodeWithTouch:[touches anyObject]];
-    }
+    NSLog(@"touches moved");
+    if ([_delegate respondsToSelector:@selector(nodeView:isDrawingEdgeToPoint:)])
+        [_delegate nodeView:self isDrawingEdgeToPoint:[[touches anyObject] locationInView:self.superview]];
     [super touchesMoved:touches withEvent:event];
 }
 
-- (void)moveNodeWithTouch:(UITouch*)touch {
-    CGPoint touchPoint = [touch locationInView:self.superview];
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"touches ended");
+    isAnimatingSelection = NO;
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)moveNodeWithGesuture:(UIGestureRecognizer*)gestureRecognizer {
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.superview];
     if (CGRectContainsPoint(self.superview.bounds, touchPoint)) {
         touchPoint.x -= kNODE_RADIUS;
         touchPoint.y -= kNODE_RADIUS;
@@ -68,12 +71,30 @@
 
 - (void)tapOccurred:(UITapGestureRecognizer *)tapGesture {
     NSLog(@"tap occurred in node %d", _number);
+    if ([_delegate respondsToSelector:@selector(nodeViewNeedsOptionsDialog:)])
+        [_delegate nodeViewNeedsOptionsDialog:self];
 }
 
 - (void)longPressOccurred:(UILongPressGestureRecognizer*)longPressGesture {
-    NSLog(@"long press");
-    if ([_delegate respondsToSelector:@selector(nodeViewNeedsOptionsDialog:)])
-        [_delegate nodeViewNeedsOptionsDialog:self];
+    
+    if (!isAnimatingSelection) {
+        isAnimatingSelection = YES;
+        NSLog(@"long press");
+//        CGRect currentFrame = self.frame;
+//        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+//            CGFloat extraEdgeLength = (currentFrame.size.width * 0.3) / 2.0;
+//            NSLog(@"extraEdgeLength: %f", extraEdgeLength);
+//            self.frame = CGRectMake(currentFrame.origin.x - extraEdgeLength, currentFrame.origin.y - extraEdgeLength, currentFrame.size.width + extraEdgeLength, currentFrame.size.height + extraEdgeLength);
+//        } completion:^(BOOL finished){
+//            if (finished) {
+//                [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+//                    CGFloat extraEdgeLength = (currentFrame.size.width * 0.2) / 2.0;
+//                    self.frame = CGRectMake(currentFrame.origin.x - extraEdgeLength, currentFrame.origin.y - extraEdgeLength, currentFrame.size.width + extraEdgeLength, currentFrame.size.height + extraEdgeLength);
+//                } completion:nil];
+//            }
+//        }];
+    }
+    [self moveNodeWithGesuture:longPressGesture];
 }
 
 - (void)setNumber:(NSUInteger)number {

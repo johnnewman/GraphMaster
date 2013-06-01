@@ -21,9 +21,7 @@
 @interface GMGraphViewController ()
 
 - (IBAction)doneShowingOptionsView;
-- (IBAction)drawStyleChanged;
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer*)tapGestureRecognizer;
-- (IBAction)canvassLongPressGesture:(UILongPressGestureRecognizer*)longPressGestureRecognizer;
 - (void)addNewNodeAtPoint:(CGPoint)point;
 - (void)drawNewEdgeIfNeededForPoint:(CGPoint)point;
 - (GMNodeView*)nodeInPoint:(CGPoint)point;
@@ -31,7 +29,6 @@
 
 @property (nonatomic, weak) IBOutlet GMGraphCanvass *graphCanvass;
 @property (nonatomic, weak) IBOutlet GMGraphOptionsView *graphOptionsView;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *drawTypeSegControl;
 @property (nonatomic, weak) IBOutlet XBPageDragView *pageDragView;
 @end
 
@@ -39,7 +36,6 @@
 
 @synthesize graphCanvass = _graphCanvass;
 @synthesize graphOptionsView = _graphOptionsView;
-@synthesize drawTypeSegControl = _drawTypeSegControl;
 @synthesize pageDragView = _pageDragView;
 
 
@@ -117,28 +113,19 @@
 }
 
 
-#pragma mark -
-#pragma mark Draw Style Action
 
 - (IBAction)doneShowingOptionsView {
     [_pageDragView uncurlPageAnimated:YES completion:nil];
 }
 
-- (IBAction)drawStyleChanged {
-    NSUInteger selectedDrawType = _drawTypeSegControl.selectedSegmentIndex;
-    currentDrawType = selectedDrawType;
-}
 
 
 #pragma mark -
 #pragma mark New Node Methods
 
-- (IBAction)canvassLongPressGesture:(UILongPressGestureRecognizer*)longPressGestureRecognizer {
-    NSLog(@"canvass long press");
-}
+
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer {    
-    if (currentDrawType == NODE_TYPE)
-        [self addNewNodeAtPoint:[tapGestureRecognizer locationInView:_graphCanvass]];
+    [self addNewNodeAtPoint:[tapGestureRecognizer locationInView:_graphCanvass]];
 }
 
 - (void)addNewNodeAtPoint:(CGPoint)point {
@@ -150,11 +137,8 @@
     [node addGestureRecognizer:tapGesture];
     
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:node action:@selector(longPressOccurred:)];
-    longPressGesture.minimumPressDuration = 1.0;
-    
     [node addGestureRecognizer:longPressGesture];
     [_graphCanvass addSubview:node];
-    [_graphCanvass bringSubviewToFront:_drawTypeSegControl];
 }
 
 
@@ -172,12 +156,12 @@
 
 - (void)drawNewEdgeIfNeededForPoint:(CGPoint)point {
     GMNodeView *destinationNode = [self nodeInPoint:point];
-    if (destinationNode && destinationNode != _graphCanvass.nodeWithTouches && ![_graphCanvass.nodeWithTouches.outgoingNodes containsObject:destinationNode]) {
+    if (destinationNode && destinationNode != _graphCanvass.nodeWithNewEdge && ![_graphCanvass.nodeWithNewEdge.outgoingNodes containsObject:destinationNode]) {
         int randWeight = arc4random() % 100;
-        GMEdge *newEdge = [[GMEdge alloc] initWithWeight:randWeight startNode:_graphCanvass.nodeWithTouches destNode:destinationNode];
+        GMEdge *newEdge = [[GMEdge alloc] initWithWeight:randWeight startNode:_graphCanvass.nodeWithNewEdge destNode:destinationNode];
         newEdge.delegate = self;
         [_graphCanvass addSubview:newEdge.weightButton];
-        [_graphCanvass.nodeWithTouches addOutgoingEdge:newEdge];
+        [_graphCanvass.nodeWithNewEdge addOutgoingEdge:newEdge];
         [_graphCanvass setNeedsDisplay];
     }
 }
@@ -193,8 +177,10 @@
 #pragma mark -
 #pragma mark GMNodeViewSelectionDelegate
 
-- (void)nodeViewTouchesBegan:(GMNodeView *)nodeView {
-    _graphCanvass.nodeWithTouches = nodeView;
+- (void)nodeView:(GMNodeView *)nodeView isDrawingEdgeToPoint:(CGPoint)point {
+    NSLog(@"nodeView isDrawingEdgeToPoint");
+    _graphCanvass.isDrawingNewEdge = YES;
+    [_graphCanvass drawNewEdgeFromNode:nodeView toPoint:point];
 }
 
 - (void)nodeViewIsMovingOrigin:(GMNodeView *)nodeView {

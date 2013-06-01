@@ -12,7 +12,8 @@
 @class GMEdge;
 
 @interface GMNodeView : UIView {
-    BOOL isDrawingNewEdge;
+    BOOL isMovingPosition;
+    BOOL isAnimatingSelection;
     CGPoint newEdgeDestPoint;
 }
 
