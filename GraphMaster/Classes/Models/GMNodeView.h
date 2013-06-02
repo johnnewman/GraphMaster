@@ -13,7 +13,6 @@
 
 @interface GMNodeView : UIView {
     BOOL isMovingPosition;
-    BOOL isAnimatingSelection;
     CGPoint newEdgeDestPoint;
 }
 
