@@ -12,5 +12,6 @@
 @interface GMEdgeOptionsViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property(nonatomic, weak)id<GMEdgeOptionsDelegate> delegate;
+@property(nonatomic)NSInteger selectedWeight;
 
 @end

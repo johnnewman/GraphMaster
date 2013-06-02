@@ -162,7 +162,9 @@
         newEdge.delegate = self;
         [_graphCanvass addSubview:newEdge.weightButton];
         [_graphCanvass.nodeWithNewEdge addOutgoingEdge:newEdge];
-        [_graphCanvass setNeedsDisplay];
+        
+        //show the weight selector after the edge has been drawn
+        [self performSelector:@selector(edgeSelected:) withObject:newEdge afterDelay:0.25];
     }
 }
 
@@ -178,7 +180,6 @@
 #pragma mark GMNodeViewSelectionDelegate
 
 - (void)nodeView:(GMNodeView *)nodeView isDrawingEdgeToPoint:(CGPoint)point {
-    NSLog(@"nodeView isDrawingEdgeToPoint");
     _graphCanvass.isDrawingNewEdge = YES;
     [_graphCanvass drawNewEdgeFromNode:nodeView toPoint:point];
 }
@@ -187,9 +188,7 @@
     [_graphCanvass setNeedsDisplay];
 }
 
-- (void)nodeViewNeedsOptionsDialog:(GMNodeView*)nodeView {
-    NSLog(@"node view needs option dialog: %d", nodeView.number);
-    
+- (void)nodeViewNeedsOptionsDialog:(GMNodeView*)nodeView {    
     GMNodeOptionsViewController *nodeOptionsViewController = [[GMNodeOptionsViewController alloc] initWithNibName:nil bundle:nil];
     popoverController = [[WEPopoverController alloc] initWithContentViewController:nodeOptionsViewController];
     [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
@@ -206,6 +205,7 @@
     
     GMEdgeOptionsViewController *edgeOptionsViewController = [[GMEdgeOptionsViewController alloc] initWithNibName:nil bundle:nil];
     edgeOptionsViewController.delegate = self;
+    edgeOptionsViewController.selectedWeight = selectedEdge.weight;
     popoverController = [[WEPopoverController alloc] initWithContentViewController:edgeOptionsViewController];
     [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
     [popoverController presentPopoverFromRect:edge.weightButton.frame inView:_graphCanvass permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];

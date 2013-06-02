@@ -57,6 +57,7 @@
     
     weightPicker.delegate = self;
     weightPicker.dataSource = self;
+    [weightPicker selectRow:_selectedWeight inComponent:0 animated:NO];
     [self.view addSubview:weightPicker];
 }
 
