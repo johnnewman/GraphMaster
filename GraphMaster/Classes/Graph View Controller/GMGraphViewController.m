@@ -16,6 +16,7 @@
 #import "WEPopoverController.h"
 #import "GMGraphOptionsView.h"
 #import "XBPageDragView.h"
+#import "GMAlgorithmSolver.h"
 
 
 @interface GMGraphViewController ()
@@ -61,55 +62,12 @@
 }
 
 - (void)graphOptionsView:(GMGraphOptionsView *)optionsView didSelectAlgorithm:(AlgorithmType)type {
+    [self doneShowingOptionsView];
     if (type == kDIJKSTRAS) {
-        GMNodeView *startNode = [nodes objectAtIndex:0];
-        
-        for (GMNodeView *node in nodes) {
-            node.distance = INT32_MAX;
-            node.previousNode = nil;
-        }
-        startNode.distance = 0;
-        
-        NSMutableArray *queue = [NSMutableArray arrayWithArray:nodes];
-        
-        NSComparisonResult (^distanceComparator)(id obj1, id obj2) = ^NSComparisonResult(id obj1, id obj2) {
-            NSInteger difference = ((GMNodeView*)obj1).distance - ((GMNodeView*)obj2).distance;
-            if (difference == 0)
-                difference = ((GMNodeView*)obj1).number - ((GMNodeView*)obj2).number;
-            if (difference > 0)
-                return NSOrderedDescending;
-            else
-                return NSOrderedAscending;
-        };
-        
-        [queue sortUsingComparator:distanceComparator];
-        GMNodeView *currentNode;
-        while (queue.count > 0) {
-            currentNode = [queue objectAtIndex:0];
-            [queue removeObjectAtIndex:0];
-            for (GMEdge *edge in currentNode.outgoingEdges) {
-                GMNodeView *otherNodeOnEdge = edge.destNode;
-                if (otherNodeOnEdge.distance > currentNode.distance + edge.weight) {
-                    otherNodeOnEdge.distance = currentNode.distance + edge.weight;
-                    otherNodeOnEdge.previousNode = currentNode;
-                    [queue sortUsingComparator:distanceComparator];
-                }
-            }
-        }
-        
-        //color the used edges
-        for (GMNodeView *node in nodes) {
-            if (node.previousNode != nil) {  //will be null on start node
-                for (GMEdge *edge in node.previousNode.outgoingEdges) {
-                    if (edge.destNode == node){
-                        edge.isTraveled = YES;
-                        break;
-                    }
-                }
-            }
-        }
-        [_graphCanvass setNeedsDisplay];
+        GMAlgorithmSolver *solver = [GMAlgorithmSolver sharedInstance];
+        [solver runDijkstrasWithNodes:nodes];
     }
+    [_graphCanvass setNeedsDisplay];
 }
 
 

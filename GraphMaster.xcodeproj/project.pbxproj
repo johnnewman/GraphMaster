@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521DF424175BF577003310D2 /* GMAlgorithmSolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 521DF423175BF577003310D2 /* GMAlgorithmSolver.m */; };
+		521DF425175BF577003310D2 /* GMAlgorithmSolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 521DF423175BF577003310D2 /* GMAlgorithmSolver.m */; };
 		522058121724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058111724C262004EE526 /* GMEdgeOptionsViewController.m */; };
 		522058131724C262004EE526 /* GMEdgeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058111724C262004EE526 /* GMEdgeOptionsViewController.m */; };
 		522058161724C4C1004EE526 /* GMNodeOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522058151724C4C1004EE526 /* GMNodeOptionsViewController.m */; };
@@ -126,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		520B5F621741E78F0023A38E /* GMGraphOptionsViewsSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMGraphOptionsViewsSelectionDelegate.h; path = "Classes/Options View/GMGraphOptionsViewsSelectionDelegate.h"; sourceTree = "<group>"; };
+		521DF422175BF577003310D2 /* GMAlgorithmSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMAlgorithmSolver.h; path = "Classes/Algorithm Solver/GMAlgorithmSolver.h"; sourceTree = "<group>"; };
+		521DF423175BF577003310D2 /* GMAlgorithmSolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMAlgorithmSolver.m; path = "Classes/Algorithm Solver/GMAlgorithmSolver.m"; sourceTree = "<group>"; };
 		5220580F1724C262004EE526 /* GMEdgeOptionsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeOptionsDelegate.h; path = "Classes/Edge Options View Controller/GMEdgeOptionsDelegate.h"; sourceTree = "<group>"; };
 		522058101724C262004EE526 /* GMEdgeOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMEdgeOptionsViewController.h; path = "Classes/Edge Options View Controller/GMEdgeOptionsViewController.h"; sourceTree = "<group>"; };
 		522058111724C262004EE526 /* GMEdgeOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMEdgeOptionsViewController.m; path = "Classes/Edge Options View Controller/GMEdgeOptionsViewController.m"; sourceTree = "<group>"; };
@@ -242,6 +246,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521DF421175BF538003310D2 /* Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				521DF422175BF577003310D2 /* GMAlgorithmSolver.h */,
+				521DF423175BF577003310D2 /* GMAlgorithmSolver.m */,
+			);
+			name = Algorithms;
+			sourceTree = "<group>";
+		};
 		5220580B1724C1BA004EE526 /* Node Options View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +428,7 @@
 		52EE9CA716F13FEC00284359 /* GraphMaster */ = {
 			isa = PBXGroup;
 			children = (
+				521DF421175BF538003310D2 /* Algorithms */,
 				52EE9CE916F1418F00284359 /* Models */,
 				52EE9CE016F1413300284359 /* Graph View Controller */,
 				52EE9CF416F1437400284359 /* Canvass View */,
@@ -681,6 +695,7 @@
 				524464D817308A3600E0E5FF /* XBPageDragView.m in Sources */,
 				524464DA17308A3600E0E5FF /* XBSnappingPoint.m in Sources */,
 				52973DE117309B9F00B5A51D /* GMGraphOptionsView.m in Sources */,
+				521DF424175BF577003310D2 /* GMAlgorithmSolver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +723,7 @@
 				524464D917308A3600E0E5FF /* XBPageDragView.m in Sources */,
 				524464DB17308A3600E0E5FF /* XBSnappingPoint.m in Sources */,
 				52973DE217309B9F00B5A51D /* GMGraphOptionsView.m in Sources */,
+				521DF425175BF577003310D2 /* GMAlgorithmSolver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
