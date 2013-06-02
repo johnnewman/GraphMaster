@@ -172,6 +172,21 @@
 
 
 #pragma mark -
+#pragma mark GMEdgeOptionsDelegate Methods
+
+- (void)weightPickerViewController:(GMEdgeOptionsViewController *)weightPickerViewController didSelectWeight:(NSInteger)weight {
+    selectedEdge.weight = weight;
+}
+
+- (void)weightPickerViewControllerDeleteButtonSelected:(GMEdgeOptionsViewController *)weightPickerViewController {
+    [popoverController dismissPopoverAnimated:YES];
+    [selectedEdge.startNode removeOutgoingEdge:selectedEdge];
+    [selectedEdge.weightButton removeFromSuperview];
+    [_graphCanvass setNeedsDisplay];
+}
+
+
+#pragma mark -
 #pragma mark Popover Properties
 
 - (WEPopoverContainerViewProperties *)improvedContainerViewProperties {
@@ -207,24 +222,6 @@
 	props.leftArrowImageName = @"popoverArrowLeft.png";
 	props.rightArrowImageName = @"popoverArrowRight.png";
 	return props;
-}
-
-
-
-
-
-#pragma mark -
-#pragma mark GMEdgeOptionsDelegate Methods
-
-- (void)weightPickerViewController:(GMEdgeOptionsViewController *)weightPickerViewController didSelectWeight:(NSInteger)weight {
-    selectedEdge.weight = weight;
-}
-
-- (void)weightPickerViewControllerDeleteButtonSelected:(GMEdgeOptionsViewController *)weightPickerViewController {
-    [popoverController dismissPopoverAnimated:YES];
-    [selectedEdge.startNode removeOutgoingEdge:selectedEdge];
-    [selectedEdge.weightButton removeFromSuperview];
-    [_graphCanvass setNeedsDisplay];
 }
 
 @end
