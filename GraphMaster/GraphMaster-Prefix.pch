@@ -12,6 +12,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
+#define kNODE_POP_ANIMATION_TIME 0.1
+
 #define kNODE_RADIUS 35
 #define kNODE_EDGE_WIDTH 4
 #define kNODE_TEXT_SIZE 30

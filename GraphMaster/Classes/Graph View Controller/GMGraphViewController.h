@@ -21,6 +21,8 @@
     NSMutableArray *nodes;
     WEPopoverController *popoverController;
     GMEdge *selectedEdge;
+    dispatch_source_t popOutAnimationTimer;
+    dispatch_source_t popInAnimationTimer;
 }
 
 @property (nonatomic, weak, readonly) IBOutlet GMGraphCanvass *graphCanvass;

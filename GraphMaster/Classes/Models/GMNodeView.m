@@ -70,8 +70,8 @@
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateCancelled:
         {
-            if ([_delegate respondsToSelector:@selector(nodeView:didFinishDrawingEdgeToPoint:)])
-                [_delegate nodeView:self didFinishDrawingEdgeToPoint:[panGesture locationInView:self.superview]];
+            if ([_delegate respondsToSelector:@selector(nodeView:didEndDrawingEdgeToPoint:)])
+                [_delegate nodeView:self didEndDrawingEdgeToPoint:[panGesture locationInView:self.superview]];
             break;
         }
         default:
@@ -93,9 +93,11 @@
         case UIGestureRecognizerStateBegan:
         {
             [self.superview bringSubviewToFront:self];
-            [UIView animateWithDuration:0.1 animations:^{
+            [UIView animateWithDuration:kNODE_POP_ANIMATION_TIME animations:^{
                 self.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
             }];
+            if ([_delegate respondsToSelector:@selector(nodeViewDidBeginMovingOrigin:)])
+                [_delegate nodeViewDidBeginMovingOrigin:self];
             break;
         }
         case UIGestureRecognizerStateChanged:
@@ -107,9 +109,11 @@
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateCancelled:
         {
-            [UIView animateWithDuration:0.1 animations:^{
+            [UIView animateWithDuration:kNODE_POP_ANIMATION_TIME animations:^{
                 self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
             }];
+            if ([_delegate respondsToSelector:@selector(nodeViewDidEndMovingOrigin:)])
+                [_delegate nodeViewDidEndMovingOrigin:self];
             break;
         }
         default:

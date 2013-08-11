@@ -11,9 +11,14 @@
 @class GMNodeView;
 
 @protocol GMNodeViewSelectionDelegate <NSObject>
+
 - (void)nodeViewDidBeginDrawingEdge:(GMNodeView *)nodeView;
 - (void)nodeView:(GMNodeView*)nodeView isDrawingEdgeToPoint:(CGPoint)point;
-- (void)nodeView:(GMNodeView*)nodeView didFinishDrawingEdgeToPoint:(CGPoint)point;
+- (void)nodeView:(GMNodeView*)nodeView didEndDrawingEdgeToPoint:(CGPoint)point;
+
+- (void)nodeViewDidBeginMovingOrigin:(GMNodeView *)nodeView;
 - (void)nodeViewIsMovingOrigin:(GMNodeView*)nodeView;
+- (void)nodeViewDidEndMovingOrigin:(GMNodeView *)nodeView;
+
 - (void)nodeViewNeedsOptionsDialog:(GMNodeView*)nodeView;
 @end

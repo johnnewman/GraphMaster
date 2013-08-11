@@ -70,7 +70,7 @@
                 
                 [edge centerWeightLabelToPoint:bezierCenterPoint];
                 
-                bezierIntersectPoint = [self estimateBezierIntersectWithStartPoint:startNodeCenter endPoint:destNodeCenter controlPoint:bezierControlPoint t:&estimatedTForIntersection];
+                bezierIntersectPoint = [self estimateBezierIntersectWithStartNode:edge.startNode endNode:edge.destNode controlPoint:bezierControlPoint t:&estimatedTForIntersection];
                 tDiff = 1 - estimatedTForIntersection;
                 dx = (tDiff * bezierControlPoint.x + estimatedTForIntersection * destNodeCenter.x) - (tDiff * startNodeCenter.x + estimatedTForIntersection * bezierControlPoint.x);
                 dy = (tDiff * bezierControlPoint.y + estimatedTForIntersection * destNodeCenter.y) - (tDiff * startNodeCenter.y + estimatedTForIntersection * bezierControlPoint.y);
@@ -85,7 +85,7 @@
                 
                 CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
                 CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
-                nodeIntersectPoint = [self getNodeIntersectPointWithStartPoint:startNodeCenter endPoint:destNodeCenter];
+                nodeIntersectPoint = [self getNodeIntersectPointWithStartNode:edge.startNode endNode:edge.destNode];
                 arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:nodeIntersectPoint endPoint:destNodeCenter slope:(destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x)];
                 [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:nodeIntersectPoint];
             }
@@ -99,17 +99,17 @@
     CGContextStrokePath(context);
 }
 
-- (CGPoint)getNodeIntersectPointWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
+- (CGPoint)getNodeIntersectPointWithStartNode:(GMNodeView *)startNode endNode:(GMNodeView *)endNode
 {
-    CGFloat slope = (endPoint.y - startPoint.y) / (endPoint.x - startPoint.x);
+    CGFloat slope = (endNode.center.y - startNode.center.y) / (endNode.center.x - startNode.center.x);
     CGFloat nodeIntersectX;
     
     [self prepareSlope:&slope andPerpSlope:nil];
-    if (startPoint.x < endPoint.x)
-        nodeIntersectX = endPoint.x - (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
+    if (startNode.center.x < endNode.center.x)
+        nodeIntersectX = endNode.center.x - ((endNode.frame.size.width / 2) / (sqrt(1+pow(slope, 2.0))));
     else
-        nodeIntersectX = endPoint.x + (kNODE_RADIUS / (sqrt(1+pow(slope, 2.0))));
-    return CGPointMake(nodeIntersectX, (slope * (nodeIntersectX - endPoint.x)) + endPoint.y);
+        nodeIntersectX = endNode.center.x + ((endNode.frame.size.width / 2) / (sqrt(1+pow(slope, 2.0))));
+    return CGPointMake(nodeIntersectX, (slope * (nodeIntersectX - endNode.center.x)) + endNode.center.y);
 }
 
 - (CGPoint)getBezierControlPointWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
@@ -203,25 +203,26 @@
     }
 }
 
-- (CGPoint)estimateBezierIntersectWithStartPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint t:(CGFloat*)t
+- (CGPoint)estimateBezierIntersectWithStartNode:(GMNodeView *)startNode endNode:(GMNodeView *)endNode controlPoint:(CGPoint)controlPoint t:(CGFloat*)t
 {
     CGPoint intersectPoint;
     CGFloat lowerLimit = 0;
     CGFloat upperLimit = 1;
     CGFloat distanceFromIntersectToEnd;
+        
     for (NSUInteger i = 0; i < 10; i++)
     {
         //Reduced Quadratic Bezier Curve formula : B(t) = (1-t)^2P0 + 2(1-t)t(P1) + t^2P2 , T->[0,1]
         //Distance formula: d = srqt((x2-x1)^2 + (y2-y1)^2)
         
-        intersectPoint = CGPointMake(pow((1-*t), 2)*startPoint.x + 2*(1-*t) * *t * controlPoint.x + pow(*t, 2.0) * endPoint.x,
-                                     pow((1-*t), 2)*startPoint.y + 2*(1-*t) * *t * controlPoint.y + pow(*t, 2.0) * endPoint.y);
-        distanceFromIntersectToEnd = sqrtf(powf(intersectPoint.x - endPoint.x, 2) + powf(intersectPoint.y - endPoint.y, 2));
+        intersectPoint = CGPointMake(pow((1-*t), 2)*startNode.center.x + 2*(1-*t) * *t * controlPoint.x + pow(*t, 2.0) * endNode.center.x,
+                                     pow((1-*t), 2)*startNode.center.y + 2*(1-*t) * *t * controlPoint.y + pow(*t, 2.0) * endNode.center.y);
+        distanceFromIntersectToEnd = sqrtf(powf(intersectPoint.x - endNode.center.x, 2) + powf(intersectPoint.y - endNode.center.y, 2));
         
-        if (distanceFromIntersectToEnd == kNODE_RADIUS) //on edge
+        if (distanceFromIntersectToEnd == endNode.frame.size.width/2) //on edge
             break;
         
-        else if (distanceFromIntersectToEnd > kNODE_RADIUS)
+        else if (distanceFromIntersectToEnd > endNode.frame.size.width/2)
         {
             //outside circle
             lowerLimit = *t;

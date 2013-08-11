@@ -21,6 +21,8 @@
 
 @interface GMGraphViewController ()
 
+- (void)setupAnimationTimer:(dispatch_source_t __strong *)timer;
+- (void)startAnimationTimer:(dispatch_source_t)timer;
 - (IBAction)doneShowingOptionsView;
 - (IBAction)canvassTapGesture:(UITapGestureRecognizer*)tapGestureRecognizer;
 - (void)addNewNodeAtPoint:(CGPoint)point;
@@ -53,6 +55,43 @@
     
     XBSnappingPoint *point = [[XBSnappingPoint alloc] initWithPosition:CGPointMake(_pageDragView.viewToCurl.frame.size.width*0.1, _pageDragView.viewToCurl.frame.size.height*0.1) angle:7*M_PI/8 radius:80 weight:0.5];
     [_pageDragView.pageCurlView addSnappingPoint:point];
+    
+    [self setupAnimationTimer:&popOutAnimationTimer];
+    [self setupAnimationTimer:&popInAnimationTimer];
+}
+
+//Used to refresh the graph canvass while the "pop out" or "pop in" node animations are occurring.
+//  These animations will happen whenever the user begins or ends moving a node around the canvass.
+//  The canvass is refreshed during these pop animations to show any incoming edge arrows move with
+//  in/out with the edge of the node.
+- (void)setupAnimationTimer:(dispatch_source_t __strong *)timer
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    *timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    if (*timer)
+    {
+        double timerDelayInSeconds = kNODE_POP_ANIMATION_TIME / 10;
+        dispatch_source_set_timer(*timer, DISPATCH_TIME_NOW, (int64_t)(timerDelayInSeconds * NSEC_PER_SEC), 0);
+        dispatch_source_set_event_handler(*timer, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_graphCanvass setNeedsDisplay];
+            });
+        });
+    }
+    else
+        NSLog(@"timer could not be created!");
+}
+
+- (void)startAnimationTimer:(dispatch_source_t)timer
+{
+    if (timer)
+    {
+        dispatch_resume(timer);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kNODE_POP_ANIMATION_TIME * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            dispatch_suspend(timer);
+        });
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,8 +108,6 @@
     }
     [_graphCanvass setNeedsDisplay];
 }
-
-
 
 - (IBAction)doneShowingOptionsView {
     [_pageDragView uncurlPageAnimated:YES completion:nil];
@@ -108,7 +145,7 @@
         [_graphCanvass.nodeWithNewEdge addOutgoingEdge:newEdge];
         
         //show the weight selector after the edge has been drawn
-        [self performSelector:@selector(edgeSelected:) withObject:newEdge afterDelay:0.25];
+        //[self performSelector:@selector(edgeSelected:) withObject:newEdge afterDelay:0.25];
     }
 }
 
@@ -128,23 +165,36 @@
     _graphCanvass.nodeWithNewEdge = nodeView;
 }
 
-- (void)nodeView:(GMNodeView *)nodeView isDrawingEdgeToPoint:(CGPoint)point {
+- (void)nodeView:(GMNodeView *)nodeView isDrawingEdgeToPoint:(CGPoint)point
+{
     _graphCanvass.edgeEndPoint = point;
     [_graphCanvass setNeedsDisplay];
 }
 
-- (void)nodeView:(GMNodeView *)nodeView didFinishDrawingEdgeToPoint:(CGPoint)point
+- (void)nodeView:(GMNodeView *)nodeView didEndDrawingEdgeToPoint:(CGPoint)point
 {
     [self drawNewEdgeIfNeededForPoint:point];
     _graphCanvass.nodeWithNewEdge = nil;
     [_graphCanvass setNeedsDisplay];
 }
 
+
+- (void)nodeViewDidBeginMovingOrigin:(GMNodeView *)nodeView
+{
+    [self startAnimationTimer:popOutAnimationTimer];
+}
+
 - (void)nodeViewIsMovingOrigin:(GMNodeView *)nodeView {
     [_graphCanvass setNeedsDisplay];
 }
 
-- (void)nodeViewNeedsOptionsDialog:(GMNodeView*)nodeView {    
+- (void)nodeViewDidEndMovingOrigin:(GMNodeView *)nodeView
+{
+    [self startAnimationTimer:popInAnimationTimer];
+}
+
+- (void)nodeViewNeedsOptionsDialog:(GMNodeView*)nodeView
+{
     GMNodeOptionsViewController *nodeOptionsViewController = [[GMNodeOptionsViewController alloc] initWithNibName:nil bundle:nil];
     popoverController = [[WEPopoverController alloc] initWithContentViewController:nodeOptionsViewController];
     [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
@@ -164,7 +214,6 @@
     popoverController = [[WEPopoverController alloc] initWithContentViewController:edgeOptionsViewController];
     [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
     [popoverController presentPopoverFromRect:edge.weightButton.frame inView:_graphCanvass permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    
 }
 
 
