@@ -91,26 +91,12 @@
     node.delegate = self;
     [nodes addObject:node];
     node.frame = CGRectMake(point.x - kNODE_RADIUS, point.y - kNODE_RADIUS, kNODE_RADIUS*2, kNODE_RADIUS*2);
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:node action:@selector(tapOccurred:)];
-    [node addGestureRecognizer:tapGesture];
-    
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:node action:@selector(longPressOccurred:)];
-    [node addGestureRecognizer:longPressGesture];
     [_graphCanvass addSubview:node];
 }
 
 
 #pragma mark -
 #pragma mark New Edge Methods
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (_graphCanvass.isDrawingNewEdge) {
-        [self drawNewEdgeIfNeededForPoint:[[touches anyObject] locationInView:_graphCanvass]];
-        _graphCanvass.isDrawingNewEdge = NO;
-    }
-    [_graphCanvass setNeedsDisplay];
-    [super touchesEnded:touches withEvent:event];
-}
 
 - (void)drawNewEdgeIfNeededForPoint:(CGPoint)point {
     GMNodeView *destinationNode = [self nodeInPoint:point];
@@ -137,9 +123,21 @@
 #pragma mark -
 #pragma mark GMNodeViewSelectionDelegate
 
+- (void)nodeViewDidBeginDrawingEdge:(GMNodeView *)nodeView
+{
+    _graphCanvass.nodeWithNewEdge = nodeView;
+}
+
 - (void)nodeView:(GMNodeView *)nodeView isDrawingEdgeToPoint:(CGPoint)point {
-    _graphCanvass.isDrawingNewEdge = YES;
-    [_graphCanvass drawNewEdgeFromNode:nodeView toPoint:point];
+    _graphCanvass.edgeEndPoint = point;
+    [_graphCanvass setNeedsDisplay];
+}
+
+- (void)nodeView:(GMNodeView *)nodeView didFinishDrawingEdgeToPoint:(CGPoint)point
+{
+    [self drawNewEdgeIfNeededForPoint:point];
+    _graphCanvass.nodeWithNewEdge = nil;
+    [_graphCanvass setNeedsDisplay];
 }
 
 - (void)nodeViewIsMovingOrigin:(GMNodeView *)nodeView {
@@ -151,7 +149,6 @@
     popoverController = [[WEPopoverController alloc] initWithContentViewController:nodeOptionsViewController];
     [popoverController setContainerViewProperties:[self improvedContainerViewProperties]];
     [popoverController presentPopoverFromRect:nodeView.frame inView:_graphCanvass permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    
 }
 
 

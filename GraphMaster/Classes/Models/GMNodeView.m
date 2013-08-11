@@ -12,7 +12,7 @@
 
 @interface GMNodeView ()
 
-- (void)moveNodeWithGesuture:(UIGestureRecognizer*)gestureRecognizer;
+- (void)moveNodeWithGesture:(UIGestureRecognizer*)gestureRecognizer;
 
 @property (nonatomic, strong) UILabel *numberLabel;
 
@@ -36,19 +36,92 @@
         
         _outgoingEdges = [NSMutableArray array];
         _outgoingNodes = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOccurred:)];
+        [self addGestureRecognizer:tapGesture];
+        
+        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
+        [self addGestureRecognizer:longPressGesture];
+        
+        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOccurred:)];
+        [self addGestureRecognizer:panGesture];
     }
     return self;
 }
 
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if ([_delegate respondsToSelector:@selector(nodeView:isDrawingEdgeToPoint:)])
-        [_delegate nodeView:self isDrawingEdgeToPoint:[[touches anyObject] locationInView:self.superview]];
-    [super touchesMoved:touches withEvent:event];
+//used for drawing a new edge
+- (void)panOccurred:(UIPanGestureRecognizer *)panGesture
+{
+    switch (panGesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            if ([_delegate respondsToSelector:@selector(nodeViewDidBeginDrawingEdge:)])
+                [_delegate nodeViewDidBeginDrawingEdge:self];
+            break;
+        }
+        case UIGestureRecognizerStateChanged:
+        {
+            if ([_delegate respondsToSelector:@selector(nodeView:isDrawingEdgeToPoint:)])
+                [_delegate nodeView:self isDrawingEdgeToPoint:[panGesture locationInView:self.superview]];
+            break;
+        }
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateFailed:
+        case UIGestureRecognizerStateCancelled:
+        {
+            if ([_delegate respondsToSelector:@selector(nodeView:didFinishDrawingEdgeToPoint:)])
+                [_delegate nodeView:self didFinishDrawingEdgeToPoint:[panGesture locationInView:self.superview]];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
-- (void)moveNodeWithGesuture:(UIGestureRecognizer*)gestureRecognizer {
+
+//used for showing an options dialog
+- (void)tapOccurred:(UITapGestureRecognizer *)tapGesture {
+    if ([_delegate respondsToSelector:@selector(nodeViewNeedsOptionsDialog:)])
+        [_delegate nodeViewNeedsOptionsDialog:self];
+}
+
+
+//used for moving the node
+- (void)longPressOccurred:(UILongPressGestureRecognizer*)longPressGesture {
+    switch (longPressGesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            [self.superview bringSubviewToFront:self];
+            [UIView animateWithDuration:0.1 animations:^{
+                self.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+            }];
+            break;
+        }
+        case UIGestureRecognizerStateChanged:
+        {
+            [self moveNodeWithGesture:longPressGesture];
+            break;
+        }
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateFailed:
+        case UIGestureRecognizerStateCancelled:
+        {
+            [UIView animateWithDuration:0.1 animations:^{
+                self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            }];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)moveNodeWithGesture:(UIGestureRecognizer*)gestureRecognizer {
     CGPoint touchPoint = [gestureRecognizer locationInView:self.superview];
+    touchPoint.x -= kNODE_RADIUS * 0.5;
+    touchPoint.y -= kNODE_RADIUS * 0.5;
+    
     if (CGRectContainsPoint(self.superview.bounds, touchPoint)) {
         touchPoint.x -= kNODE_RADIUS;
         touchPoint.y -= kNODE_RADIUS;
@@ -61,21 +134,10 @@
     }
 }
 
-
-- (void)tapOccurred:(UITapGestureRecognizer *)tapGesture {
-    if ([_delegate respondsToSelector:@selector(nodeViewNeedsOptionsDialog:)])
-        [_delegate nodeViewNeedsOptionsDialog:self];
-}
-
-- (void)longPressOccurred:(UILongPressGestureRecognizer*)longPressGesture {
-    [self moveNodeWithGesuture:longPressGesture];
-}
-
 - (void)setNumber:(NSUInteger)number {
     _number = number;
     _numberLabel.text = [NSString stringWithFormat:@"%d", _number];
 }
-
 
 - (void)addOutgoingEdge:(GMEdge *)edge {
     [_outgoingEdges addObject:edge];

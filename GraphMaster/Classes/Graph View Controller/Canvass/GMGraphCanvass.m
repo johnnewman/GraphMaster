@@ -21,13 +21,6 @@
 @implementation GMGraphCanvass
 
 
-- (void)drawNewEdgeFromNode:(GMNodeView *)node toPoint:(CGPoint)edgePoint
-{
-    _nodeWithNewEdge = node;
-    edgeEndPoint = edgePoint;
-    [self setNeedsDisplay];
-}
-
 - (void)drawRect:(CGRect)rect
 {
     CGRect startNodeFrame, destNodeFrame;
@@ -46,10 +39,10 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, kEDGE_WIDTH);
     
-    if (_isDrawingNewEdge) {
+    if (_nodeWithNewEdge) {
         CGPoint nodeCenter = _nodeWithNewEdge.center;
         CGContextMoveToPoint(context, nodeCenter.x, nodeCenter.y);
-        CGContextAddLineToPoint(context, edgeEndPoint.x, edgeEndPoint.y);
+        CGContextAddLineToPoint(context, _edgeEndPoint.x, _edgeEndPoint.y);
         CGContextStrokePath(context);
     }    
     

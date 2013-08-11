@@ -9,14 +9,12 @@
 #import <UIKit/UIKit.h>
 @class GMNodeView;
 
-@interface GMGraphCanvass : UIView {
-    CGPoint edgeEndPoint;    
-}
+@interface GMGraphCanvass : UIView
 
-@property (nonatomic, weak, readonly)GMNodeView *nodeWithNewEdge;
+@property (nonatomic, weak)GMNodeView *nodeWithNewEdge;
+@property (nonatomic, assign)CGPoint edgeEndPoint;
+
 @property (nonatomic)BOOL isDrawingNewEdge;
 @property (nonatomic, weak)NSMutableArray *nodes;
-
-- (void)drawNewEdgeFromNode:(GMNodeView*)node toPoint:(CGPoint)edgePoint;
 
 @end
