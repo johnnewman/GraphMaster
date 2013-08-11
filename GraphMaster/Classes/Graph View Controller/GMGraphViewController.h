@@ -19,8 +19,9 @@
 
 @interface GMGraphViewController : UIViewController <GMGraphOptionsViewsSelectionDelegate, GMNodeViewSelectionDelegate, GMEdgeSelectionDelegate, GMEdgeOptionsDelegate> {
     NSMutableArray *nodes;
+    __weak GMNodeView *highlightedNode;
     WEPopoverController *popoverController;
-    GMEdge *selectedEdge;
+    __weak GMEdge *selectedEdge;
     dispatch_source_t popOutAnimationTimer;
     dispatch_source_t popInAnimationTimer;
 }

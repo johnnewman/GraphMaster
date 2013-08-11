@@ -169,6 +169,13 @@
 {
     _graphCanvass.edgeEndPoint = point;
     [_graphCanvass setNeedsDisplay];
+    GMNodeView *nodeUnderEdge = [self nodeInPoint:point];
+    if (nodeUnderEdge != nodeView && nodeUnderEdge != highlightedNode)
+    {
+        [highlightedNode setHighlighted:NO];
+        [nodeUnderEdge setHighlighted:YES];
+        highlightedNode = nodeUnderEdge;
+    }
 }
 
 - (void)nodeView:(GMNodeView *)nodeView didEndDrawingEdgeToPoint:(CGPoint)point
@@ -176,6 +183,7 @@
     [self drawNewEdgeIfNeededForPoint:point];
     _graphCanvass.nodeWithNewEdge = nil;
     [_graphCanvass setNeedsDisplay];
+    [highlightedNode setHighlighted:NO];
 }
 
 

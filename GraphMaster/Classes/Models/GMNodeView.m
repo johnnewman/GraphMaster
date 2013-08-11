@@ -41,12 +41,19 @@
         [self addGestureRecognizer:tapGesture];
         
         UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressOccurred:)];
+        longPressGesture.minimumPressDuration = 0.33f;
         [self addGestureRecognizer:longPressGesture];
         
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOccurred:)];
         [self addGestureRecognizer:panGesture];
     }
     return self;
+}
+
+-(void)setHighlighted:(BOOL)isHighlighted
+{
+    _isHighlighted = isHighlighted;
+    [self setNeedsDisplay];
 }
 
 
@@ -165,7 +172,10 @@
     CGContextSetLineWidth(context, kNODE_EDGE_WIDTH);
     CGContextStrokeEllipseInRect(context, rect);
     
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    if (_isHighlighted)
+        CGContextSetFillColorWithColor(context, [UIColor colorWithRed:0.7392f green:0.1155f blue:0.7453f alpha:1.0f].CGColor);
+    else
+        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillEllipseInRect(context, rect);
 }
 
