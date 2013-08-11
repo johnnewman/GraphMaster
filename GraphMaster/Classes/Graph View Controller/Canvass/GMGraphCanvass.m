@@ -76,7 +76,7 @@
                 dy = (tDiff * bezierControlPoint.y + estimatedTForIntersection * destNodeCenter.y) - (tDiff * startNodeCenter.y + estimatedTForIntersection * bezierControlPoint.y);
                 bezierEstimationSlope = dy/dx;
                 
-                arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:bezierIntersectPoint endPoint:destNodeCenter slope:bezierEstimationSlope];
+                arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:bezierIntersectPoint endNode:edge.destNode slope:bezierEstimationSlope];
                 [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:bezierIntersectPoint];
             }
             else {
@@ -86,7 +86,7 @@
                 CGContextMoveToPoint(context, startNodeCenter.x, startNodeCenter.y);
                 CGContextAddLineToPoint(context, destNodeCenter.x, destNodeCenter.y);
                 nodeIntersectPoint = [self getNodeIntersectPointWithStartNode:edge.startNode endNode:edge.destNode];
-                arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:nodeIntersectPoint endPoint:destNodeCenter slope:(destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x)];
+                arrowEdgeStartPoints = [self getArrowEdgeStartPointsWithIntersectPoint:nodeIntersectPoint endNode:edge.destNode slope:(destNodeCenter.y - startNodeCenter.y) / (destNodeCenter.x - startNodeCenter.x)];
                 [self addArrowEdgesToContext:context withStartPoints:arrowEdgeStartPoints toEndPoint:nodeIntersectPoint];
             }
             
@@ -141,7 +141,7 @@
 }
 
 
-- (PointPair*)getArrowEdgeStartPointsWithIntersectPoint:(CGPoint)intersectPoint endPoint:(CGPoint)endPoint slope:(CGFloat)slope
+- (PointPair*)getArrowEdgeStartPointsWithIntersectPoint:(CGPoint)intersectPoint endNode:(GMNodeView *)endNode slope:(CGFloat)slope
 {
     CGFloat perpSlope;
     CGFloat perpLineXIntersect;
@@ -156,7 +156,7 @@
     //step back from the intersect to start arrow
     BOOL subracted;
     CGFloat xDifferenceToIntersect = (kARROW_DISTANCE_FROM_NODE / (sqrt(1+pow(slope, 2.0))));
-    if (intersectPoint.x  < endPoint.x) {
+    if (intersectPoint.x  < endNode.center.x) {
         subracted = YES;
         perpLineXIntersect = intersectPoint.x - xDifferenceToIntersect;
     }
@@ -166,8 +166,8 @@
     }
     perpLineIntersectPoint = CGPointMake(perpLineXIntersect, (slope * (perpLineXIntersect - intersectPoint.x)) + intersectPoint.y);
     
-    
-    if (sqrt(powf(perpLineXIntersect - endPoint.x, 2) + powf(perpLineIntersectPoint.y - endPoint.y, 2)) < kNODE_RADIUS) {
+    //if the points are inside the node, need to flip them
+    if (sqrt(powf(perpLineXIntersect - endNode.center.x, 2) + powf(perpLineIntersectPoint.y - endNode.center.y, 2)) < endNode.frame.size.width / 2) {
         if (subracted)
             perpLineXIntersect = intersectPoint.x + xDifferenceToIntersect;
         else
