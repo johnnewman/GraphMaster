@@ -70,7 +70,7 @@
     *timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     if (*timer)
     {
-        double timerDelayInSeconds = kNODE_POP_ANIMATION_TIME / 10;
+        double timerDelayInSeconds = kNODE_POP_ANIMATION_TIME / 5;
         dispatch_source_set_timer(*timer, DISPATCH_TIME_NOW, (int64_t)(timerDelayInSeconds * NSEC_PER_SEC), 0);
         dispatch_source_set_event_handler(*timer, ^{
             dispatch_async(dispatch_get_main_queue(), ^{
