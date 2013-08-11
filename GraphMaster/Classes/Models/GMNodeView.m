@@ -94,10 +94,11 @@
         {
             [self.superview bringSubviewToFront:self];
             [UIView animateWithDuration:kNODE_POP_ANIMATION_TIME animations:^{
-                self.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+                self.transform = CGAffineTransformMakeScale(kNODE_POP_SCALE, kNODE_POP_SCALE);
             }];
             if ([_delegate respondsToSelector:@selector(nodeViewDidBeginMovingOrigin:)])
                 [_delegate nodeViewDidBeginMovingOrigin:self];
+            touchOffsetPoint = [longPressGesture locationInView:self];
             break;
         }
         case UIGestureRecognizerStateChanged:
@@ -123,12 +124,12 @@
 
 - (void)moveNodeWithGesture:(UIGestureRecognizer*)gestureRecognizer {
     CGPoint touchPoint = [gestureRecognizer locationInView:self.superview];
-    touchPoint.x -= kNODE_RADIUS * 0.5;
-    touchPoint.y -= kNODE_RADIUS * 0.5;
-    
-    if (CGRectContainsPoint(self.superview.bounds, touchPoint)) {
-        touchPoint.x -= kNODE_RADIUS;
-        touchPoint.y -= kNODE_RADIUS;
+    if (CGRectContainsPoint(self.superview.bounds, touchPoint))
+    {
+        //have to scale up the point to match the newly transformed scale
+        touchPoint.x -= (touchOffsetPoint.x * kNODE_POP_SCALE);
+        touchPoint.y -= (touchOffsetPoint.y * kNODE_POP_SCALE);
+        
         CGRect frame = self.frame;
         frame.origin = touchPoint;
         self.frame = frame;

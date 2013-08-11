@@ -12,8 +12,7 @@
 @class GMEdge;
 
 @interface GMNodeView : UIView {
-    BOOL isMovingPosition;
-    CGPoint newEdgeDestPoint;
+    CGPoint touchOffsetPoint;
 }
 
 @property (nonatomic, weak) id<GMNodeViewSelectionDelegate>delegate;
