@@ -20,3 +20,4 @@ Search
 Currently there is an implementation of Dijkstras, but I haven't validated it.  Also, the app has not been updated to iOS 7.  Some minor changes need to occur before it looks equivalent to the 6.1 version.
 
 ![Alt text](/example.gif?raw=true "GIF example creating a graph")
+![Alt text](/screenshot.png?raw=true "Screenshot of the sort menus")
