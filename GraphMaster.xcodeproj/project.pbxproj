@@ -828,14 +828,14 @@
 		52EE9CDA16F13FED00284359 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: John Newman (62QG3T7HY7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Newman (62QG3T7HY7)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
 				INFOPLIST_FILE = "GraphMaster/GraphMaster-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "37C9FFB3-327A-4213-A946-2AFED136434C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37C9FFB3-327A-4213-A946-2AFED136434C";
+				PROVISIONING_PROFILE = "7FD2E970-6D62-4CC2-90BC-C7EDB9D5877B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7FD2E970-6D62-4CC2-90BC-C7EDB9D5877B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -848,6 +848,7 @@
 				GCC_PREFIX_HEADER = "GraphMaster/GraphMaster-Prefix.pch";
 				INFOPLIST_FILE = "GraphMaster/GraphMaster-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7FD2E970-6D62-4CC2-90BC-C7EDB9D5877B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
