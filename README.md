@@ -1,15 +1,15 @@
 GraphMaster
 ===========
 
-Side project to make an app to perform various CS graphing algorithms.  Currently you can create a directed graph, move the nodes around, and change the weight of the edges.
+Side project to perform various CS graphing algorithms.  Currently you can create a directed graph, move the nodes around, and change the weight of the edges.
 
-The goal was to initially be able to run:
+The goal is to run:
 
 Shortest Path
 - Dijkstra's
 - Bellman-Ford
 
-Minnimum Spanning Tree
+Minimum Spanning Tree
 - Prim's
 - Kruskals
 
@@ -17,10 +17,10 @@ Search
 - Depth-First
 - Breadh-First
 
-Currently there is an implementation of Dijkstras, but I haven't validated it.  Also, the app has not been updated to iOS 7.  Some minor changes need to occur before it looks equivalent to the 6.1 version.
+Currently there is an unvalidated implementation of Dijkstras.
 
 ![Alt text](/example.gif?raw=true "GIF example creating a graph")
 
-Flipped up submenu lying under the graph view.  Just a fun gimmicky thing I was trying out.
+Flipped up submenu lying under the graph view.  A fun gimmicky thing I was trying out.
 
 ![Alt text](/screenshot.png?raw=true "Screenshot of the sort menus")
